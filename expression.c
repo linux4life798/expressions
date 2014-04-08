@@ -177,7 +177,7 @@ string_to_expression (size_t str_len,
 
         switch(c) {
 
-        /* Parenthese */
+        /* Parentheses */
         case '(':
             oparen_count++;
             if (level < op_level) {
@@ -206,23 +206,6 @@ string_to_expression (size_t str_len,
                 op_index = index;
                 op_level = level;
             }
-            /*
-            if (level == level_base) {
-                // We found our first level0 operation! Almost Done!
-                expression_t left, right;
-                // Split the expression about the operation char
-
-                // grab first part of string for left operand
-                left  = string_to_expression( strncpy(left_operand, str, index) );
-                // grab the last part of the string for right operand
-                right = string_to_expression( &str[index] );
-
-                return expression_new_sym(c, left, right);
-                //op_index = index;
-                //index = str_len; // get out
-                break;
-            }
-            */
             break;
 
         /* White space chars */
@@ -236,6 +219,7 @@ string_to_expression (size_t str_len,
         case '\n':
         case '\r':
             /* Throw Error - encountered end of string char! */
+        	pferror("string_to_expression", "Parsing Error - Encountered a string terminating character early");
             break;
 
         default:
@@ -257,64 +241,64 @@ string_to_expression (size_t str_len,
                 index--;
 
             }
-            /*
             else {
-                // Error - Unknown character encountered
+                // Throw Error - Unknown character encountered
+            	rerror("Syntax Error - Unrecognized character \'%c\'", c);
             }
-            */
             break;
         }
 
 
     }
 
-	/* Analyse what happened */
+	/* Analyze what happened */
 
 	/* TODO (craig#1#04/07/2014): Syntax Sanity Check. Check level==0, level_changed if op_level is set... */
 
 	/* If operation was detected, use it */
 	if (op_index != SIZE_T_MAX) {
-
+		// (size of str to left of op) + (# of parens to add) + (1 null byte)
 		size_t left_buf_size = (op_index + op_level + sizeof('\0'));
+		// (str size) - (op_index + 1) + (# of parens to add) + (1 null byte)
 		size_t right_buf_size = str_len - op_index - 1 + op_level + sizeof('\0');
 
 		// We found the primary left-most operation
 		expression_t left, right;
 
-		// (size of str to left of op) + (# of parens to add) + (1 null byte)
+		/* Create temporary sub expression string buffers */
 		char left_buf[ left_buf_size ];
-		// (str size) - (op_index + 1) + (# of parens to add) + (1 null byte)
 		char right_buf[ right_buf_size ];
 
-		/*TODO: Work out details about where and how to chop. This matters because you need to pass the recursive call a paren syntax correct expression.
-		For example: ( 1 + 2 ) OR (( 1 + 2 )) must turn into (1) with (2) and ((1)) with ((2)) ...
-		I think we can just look at the current level to complete parens
-		*/
-
+		/* Build left expression buffer */
 		memset(left_buf + ( left_buf_size - (op_level + sizeof('\0')) ), ')', op_level);
 		strncpy(left_buf, str, op_index);
 
+		/* Build right expression buffer */
 		memset(right_buf, '(', op_level);
 		strncpy(right_buf + op_level, str + op_index + 1, str_len - op_index - 1);
-		left  = string_to_expression(strlen(left_buf), left_buf); //FIXME: Also need null-byte
+
+		/* Recurse on the left and right expressions */
+		left  = string_to_expression(strlen(left_buf), left_buf);
 		right = string_to_expression(strlen(right_buf), right_buf);
 
+		/* Create symbolic expression from the sub expressions and the operation */
 		return expression_new_sym(str[op_index], left, right);
 	}
 	/* If number detected, use it */
 	else if (num_index != SIZE_T_MAX) {
-		if (num_count == 1)
+		if (num_count == 1) {
+			/* Create value expression using the single number */
 			return expression_new_value( string_to_value(str_len - num_index, &str[num_index]) );
-		/*
+		}
 		 else {
 		 	 // Throw Error - detected more than one number, but no operator was detected
+			 rerror("Syntax Error - More than one number detected without an operation");
 		 }
-		 */
 	}
 	/* They gave us crap -- Error out */
 	else {
 		/* Throw Error -- Syntax error */
-		rerror("Syntax error");
+		rerror("Syntax Error - No numbers or operations detected");
 	}
 
 }
