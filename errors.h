@@ -28,13 +28,15 @@
  * Runtime Error
  */
 void
-rerror(char const *msg);
+rerror(char const *fmt,
+	   ...);
 
 /*
  * Program Fault Error
  */
 void
 pferror(const char *function_name,
-		char const *msg);
+		char const *fmt,
+		...);
 
 #endif /* ERRORS_H_ */
