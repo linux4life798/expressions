@@ -1,8 +1,12 @@
-CFLAGS += -Wall -O0
-LDFLAGS += -Wall -O0
+OPTIONS = -g -ggdb
+OPTIONS += -Wall -Wextra -O0
+OPTIONS += -pedantic
+OPTIONS += --std=c99
+#OPTIONS += -Wc++-compat
 
-CFLAGS += -ggdb
-LDFLAGS += -ggdb
+# Give compilation and linker options to both (shouldn't cause issues)
+CFLAGS  += $(OPTIONS)
+LDFLAGS += $(OPTIONS)
 
 CFLAGS += -DDEBUG # Enable debugging stuff
 #CFLAGS += -DNDEBUG # Old way to disabe assert
