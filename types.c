@@ -73,7 +73,7 @@ value_t
 string_to_value(size_t src_str_len, char const *src_str) {
 	value_t val;
 	char buf[40]; // for long int: log10(2^128) ~ 39
-	int index;
+	size_t index;
 
 	// copy number digits
 	for (index = 0; (index < src_str_len) && (index < (40-1)) /*need null byte*/ && IS_DIGIT(src_str[index]); index++) {

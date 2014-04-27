@@ -43,7 +43,7 @@ expression_new_tree (char op,
                      expression_t right) {
 
     expression_t exp = expression_new ();
-    exp->type = EXP_SYMBOLIC;
+    exp->type = EXP_TREE;
     exp->data.tree.op = op;
     exp->data.tree.left = left;
     exp->data.tree.right = right;
@@ -153,6 +153,24 @@ number_len(size_t str_len, char *str) {
     return index;
 }
 
+/** Same as strncpy, but throws an error if a null character is reached in src.
+ *
+ * @param dest Destination string buffer.
+ * @param src Source string buffer.
+ * @param count The number of bytes to copy.
+ */
+void
+str_cpy(char *dest, const char *src, size_t count) {
+	size_t index;
+	assert(src);
+	assert(dest);
+	for(index = 0; index < count; index++) {
+		if (src[index] == '\0') {
+			pferror("str_cpy", "encountered NULL byte while copying \"%s\"", src);
+		}
+		dest[index] = src[index];
+	}
+}
 /** String to Expression.
  *
  * @param str_len Length of given string
@@ -160,24 +178,23 @@ number_len(size_t str_len, char *str) {
  * @return The expression_t representation of the inputed string
  * @test Test for negative values
  * @callgraph
- * @todo Fix parser in \ref string_to_expression.
- * @bug This parser is broken.
+ * @note level was type int - changed to unsigned to temporarily quiet compiler
  */
 expression_t
 string_to_expression (size_t str_len,
 					  char const *str) {
     size_t index;
-    int level_change = 0; // flag set to 1 if level ever goes above level_base
-    int level = 0;        // indicates runtime depth of open parens '('  -- 0 for none
-    int level_base = 0;   // indicates current accepted level of open parens (will increase to "rip off" outside parens)
 
     int oparen_count = 0;
-    size_t oparen_index = SIZE_T_MAX;
-    size_t oparen_level = SIZE_T_MAX;
+//    int level_change = 0; // flag set to 1 if level ever goes above level_base
+    size_t level = 0;     // indicates runtime depth of open parens '('  -- 0 for none
+//    int level_base = 0;   // indicates current accepted level of open parens (will increase to "rip off" outside parens)
+//    size_t oparen_index = SIZE_T_MAX;
+//    size_t oparen_level = SIZE_T_MAX;
 
     int cparen_count = 0;
-    size_t cparen_index = SIZE_T_MAX;
-    size_t cparen_level = SIZE_T_MAX;
+//    size_t cparen_index = SIZE_T_MAX;
+//    size_t cparen_level = SIZE_T_MAX;
 
     int op_count = 0;             // indicates how many operations have been seen on current pass
     size_t op_index = -1;         // index of operation at lowest level found
@@ -186,8 +203,9 @@ string_to_expression (size_t str_len,
     int num_count = 0;   // indicates how many numbers have been seen on current pass
     size_t num_index = -1; // index of number at lowest level found
     size_t num_level = SIZE_T_MAX; // level of the current number found
+    size_t num_len;                // length in chars of the number found
 
-    exp_buf left_operand;
+//    exp_buf left_operand;
 
     for(index = 0; index < str_len; index++) {
         char c = str[index];
@@ -197,19 +215,20 @@ string_to_expression (size_t str_len,
         /* Parentheses */
         case '(':
             oparen_count++;
-            if (level < op_level) {
-                oparen_index = index;
-                oparen_level = level;
-            }
+//            if (level < op_level) {
+//                oparen_index = index;
+//                oparen_level = level;
+//            }
 
-            if(++level > level_base) level_change = 1;
+//            if(++level > level_base) level_change = 1;
+            level++;
             break;
         case ')':
             cparen_count++;
-            if (level < op_level) {
-                cparen_index = index;
-                cparen_level = level;
-            }
+//            if (level < op_level) {
+//                cparen_index = index;
+//                cparen_level = level;
+//            }
             level--;
             break;
 
@@ -243,19 +262,21 @@ string_to_expression (size_t str_len,
 
             if( IS_DIGIT(c) )
             {
-                size_t number_index = index;
+                size_t start_index = index;
 
                 num_count++;
-                if (level < num_level) {
-                    num_index = index;
-                    num_level = level;
-                }
 
                 // get over number
                 for (; (index < str_len) && IS_DIGIT(str[index]); index++ )
                     ;
                 // one too far
                 index--;
+
+                if (level < num_level) {
+                    num_index = start_index;
+                    num_level = level;
+                    num_len   = (index+1)-start_index;
+                }
 
             }
             else {
@@ -274,10 +295,12 @@ string_to_expression (size_t str_len,
 
 	/* If operation was detected, use it */
 	if (op_index != SIZE_T_MAX) {
+		// OpIndex + OpLevel + NullByte
 		// (size of str to left of op) + (# of parens to add) + (1 null byte)
-		size_t left_buf_size = (op_index + op_level + sizeof('\0'));
-		// (str size) - (op_index + 1) + (# of parens to add) + (1 null byte)
-		size_t right_buf_size = str_len - op_index - 1 + op_level + sizeof('\0');
+		size_t left_buf_size = op_index + op_level + sizeof(char);
+		// StrLen - ( OpIndex + 1 ) + Level + NullByte
+		// str_len - (op_index + 1) + (# of parens to add) + (1 null byte)
+		size_t right_buf_size = str_len - (op_index + 1) + op_level + sizeof(char);
 
 		// We found the primary left-most operation
 		expression_t left, right;
@@ -287,12 +310,17 @@ string_to_expression (size_t str_len,
 		char right_buf[ right_buf_size ];
 
 		/* Build left expression buffer */
-		memset(left_buf + ( left_buf_size - (op_level + sizeof('\0')) ), ')', op_level);
-		strncpy(left_buf, str, op_index);
+		memset(left_buf + ( left_buf_size - (op_level + sizeof(char)) ), ')', op_level); // place op_level many closing parens to match the op_level open ones
+		str_cpy(left_buf , str , op_index); // will copy op_index bytes
+		left_buf[left_buf_size-1] = '\0'; // place ending NULL byte
+//		strncpy(left_buf, str, op_index); // will copy op_index bytes then one NULL byte (NO NULL BYTE PLACED when n char limit reached)
 
 		/* Build right expression buffer */
 		memset(right_buf, '(', op_level);
-		strncpy(right_buf + op_level, str + op_index + 1, str_len - op_index - 1);
+		// to=(at the beginning, just past any open parens) from=(one past op_index) count=(diff. of the original length and the count up to and including the operation)
+		str_cpy(right_buf+op_level , str+op_index+1 , str_len-(op_index+1));
+		right_buf[right_buf_size-1] = '\0'; // place ending NULL byte
+//		strncpy(right_buf + op_level, str + op_index + 1, str_len - op_index - 1);
 
 		/* Recurse on the left and right expressions */
 		left  = string_to_expression(strlen(left_buf), left_buf);
@@ -305,7 +333,7 @@ string_to_expression (size_t str_len,
 	else if (num_index != SIZE_T_MAX) {
 		if (num_count == 1) {
 			/* Create value expression using the single number */
-			return expression_new_value( string_to_value(str_len - num_index, &str[num_index]) );
+			return expression_new_value( string_to_value(num_len, &str[num_index]) ); // since we give the exact start location of num, buffer size should just be number length
 		}
 		 else {
 		 	 // Throw Error - detected more than one number, but no operator was detected
