@@ -65,7 +65,10 @@ value_new_lint(sys_int_long lint) {
 
 #define IS_DIGIT(c)      ( ( '0' <= (c) ) && ( (c) <= '9') ) /// @note Is defined in @see expression.c also.
 
-/**
+/** Create value from a string.
+ * @param src_str_len The length of the actual buffer (not the number size).
+ * @param src_str The source string.
+ * @return The value in the source string.
  * @note Must have first char be digit
  * @note Currently we only do Long Ints
  */
@@ -75,6 +78,7 @@ string_to_value(size_t src_str_len, char const *src_str) {
 	char buf[40]; // for long int: log10(2^128) ~ 39
 	size_t index;
 
+	/* Prep. the number string to use in atol() */
 	// copy number digits
 	for (index = 0; (index < src_str_len) && (index < (40-1)) /*need null byte*/ && IS_DIGIT(src_str[index]); index++) {
 		buf[index] = src_str[index];
@@ -82,6 +86,7 @@ string_to_value(size_t src_str_len, char const *src_str) {
 	// place null-byte
 	buf[index] = '\0';
 
+	/* Create the value using atol() */
 	val.type = VAL_LINT; ///< @note Here we assume it is a Long Int
 	val.data.lint = (sys_int_long) atol(buf); ///< @warning Uses system atol() function
 	return val;

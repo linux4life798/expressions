@@ -180,7 +180,21 @@ str_cpy(char *dest, const char *src, size_t count) {
 		dest[index] = src[index];
 	}
 }
-/** String to Expression.
+
+/** Convert String to an Expression.
+ * Parses a string into an expression.
+ *
+ * @section parsing_algorithm Algorithm
+ * @subsection parsing_overview Parsing Overview
+ * 	- Step 1: Recording details about the string while scanning from left to right.
+ * 	- Step 2: There are two real cases. The string is a single number (with no operations)
+ * 		or it is two sub-expressions joined by an operation.\n
+ * 		Cases:
+ * 		- If it is a simple number, we know how to parse it and create a value expression.
+ * 		- If it is not just a number, we want split the string about the operation at the lowest level.
+ * 			(in practice, we end up finding the one that is farthest left of the lowest level)
+ * 			We then construct a tree expression with the chosen operation and the sub-expression results
+ * 			from running the function recursively on each of the sub-strings.
  *
  * @param str_len Length of given string
  * @param str String to parse
@@ -188,27 +202,34 @@ str_cpy(char *dest, const char *src, size_t count) {
  * @test Test for negative values
  * @callgraph
  * @note level was type int - changed to unsigned to temporarily quiet compiler
+ * @bug Cannot parse negative numbers
+ * @bug Cannot parse variables
  */
 expression_t
 string_to_expression (size_t str_len,
 					  char const *str) {
-    size_t index;
 
-    int oparen_count = 0;
+    size_t index;         // main index into str
 //    int level_change = 0; // flag set to 1 if level ever goes above level_base
     size_t level = 0;     // indicates runtime depth of open parens '('  -- 0 for none
 //    int level_base = 0;   // indicates current accepted level of open parens (will increase to "rip off" outside parens)
+
+    /* Statistics about Open Parens seen during parsing */
+    int oparen_count = 0; // total number seen
 //    size_t oparen_index = SIZE_T_MAX;
 //    size_t oparen_level = SIZE_T_MAX;
 
-    int cparen_count = 0;
+    /* Statistics about Closed Parens seen during parsing */
+    int cparen_count = 0; // total number seen
 //    size_t cparen_index = SIZE_T_MAX;
 //    size_t cparen_level = SIZE_T_MAX;
 
+    /* Statistics about Operations seen during parsing */
     int op_count = 0;             // indicates how many operations have been seen on current pass
     size_t op_index = -1;         // index of operation at lowest level found
     size_t op_level = SIZE_T_MAX; // level of the current operation found
 
+    /* Statistics about Whole Numbers seen during parsing */
     int num_count = 0;   // indicates how many numbers have been seen on current pass
     size_t num_index = -1; // index of number at lowest level found
     size_t num_level = SIZE_T_MAX; // level of the current number found
@@ -216,9 +237,12 @@ string_to_expression (size_t str_len,
 
 //    exp_buf left_operand;
 
+    /* Scan through elements of string from left to right once */
     for(index = 0; index < str_len; index++) {
+    	/* Grab current char */
         char c = str[index];
 
+        /* Identify the char grabbed */
         switch(c) {
 
         /* Parentheses */
@@ -246,7 +270,9 @@ string_to_expression (size_t str_len,
         case '-':
         case '*':
         case '/':
+        	// add one to op counter
             op_count++;
+            // if lower level op was found
             if (level < op_level) {
                 op_index = index;
                 op_level = level;
@@ -269,6 +295,7 @@ string_to_expression (size_t str_len,
 
         default:
 
+        	// if we encounter the start of a number
             if( IS_DIGIT(c) )
             {
                 size_t start_index = index;
@@ -278,7 +305,7 @@ string_to_expression (size_t str_len,
                 // get over number
                 for (; (index < str_len) && IS_DIGIT(str[index]); index++ )
                     ;
-                // one too far
+                // one too far - since index will be incremented again in the for loop
                 index--;
 
                 if (level < num_level) {
@@ -293,14 +320,19 @@ string_to_expression (size_t str_len,
             	rerror("Syntax Error - Unrecognized character \'%c\'", c);
             }
             break;
-        }
 
+        } // switch() end
 
-    }
+    } // for() end
 
 	/* Analyze what happened */
 
+    // Two Main Cases: 1) Found an operation -- multiple terms 2) Else, found just a number
+
 	/* TODO (craig#1#04/07/2014): Syntax Sanity Check. Check level==0, level_changed if op_level is set... */
+    ///@todo Do series of additional syntax checks here.
+    ///@todo Syntax Check: Check that level==0
+    ///@todo Syntax Check: Check that oparen_count==cparen_count
 
 	/* If operation was detected, use it */
 	if (op_index != SIZE_T_MAX) {
