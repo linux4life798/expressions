@@ -148,9 +148,13 @@ test1(char *str) {
 	expression_to_string (buf,  e1);
 	/// @endcode
 
+	printf("Expression(just string): "RESULT("%s")"\n", buf);
+
 	// Show results
 	val = expression_evaluate(e1);
-	printf("Expression: "RESULT("%s = %ld")"\n", buf, val.data.lint);
+	printf("Expression(both string and value): "RESULT("%s = %ld")"\n", buf, val.data.lint);
+
+	expression_free(e1);
 }
 /// @callgraph
 int main(int argc, char *argv[]) {
@@ -164,6 +168,18 @@ int main(int argc, char *argv[]) {
 
 	puts("# test0:");
 	test0();
+
+	printf("\n\n\n");
+
+	puts("# test1 (\"129\"):");
+	test1("129");
+
+
+	printf("\n\n\n");
+
+	puts("# test1 (\"1 + 1\"):");
+	test1("1 + 1");
+
 
 	printf("\n\n\n");
 
