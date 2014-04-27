@@ -86,8 +86,8 @@ sym_new(void);
 sym_t
 sym_new_name(char name);
 
-//void
-//sym_free(sym_t sym);
+void
+sym_free(sym_t sym);
 
 void
 sym_to_string(char *dst_str, sym_t src_sym);

@@ -145,7 +145,8 @@ sym_new_name(char name) {
  */
 void
 sym_free(sym_t sym) {
-	return ; // do nothing
+	sym = sym; // do nothing
+	return ;
 }
 
 /** Generate a string from a sym_t.

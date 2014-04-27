@@ -56,6 +56,15 @@ expression_new_tree (char op,
 void
 expression_free (expression_t exp) {
     assert(exp);
+
+    if (exp->type == EXP_SYMBOLIC) {
+    	sym_free(exp->data.sym);
+    }
+    else if (exp->type == EXP_TREE) {
+    	expression_free(exp->data.tree.left);
+    	expression_free(exp->data.tree.right);
+    }
+
     free(exp);
 }
 
