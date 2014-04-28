@@ -9,6 +9,7 @@
 
 #include <stddef.h> // size_t
 #include <limits.h> // for LONG_MIN
+#include "expression.h" // used in sym_t
 
 
 /*---------------------------------------------*
@@ -71,12 +72,13 @@ value_to_string (char *dst_str, value_t src_val);
  *               symbolic                      *
  *---------------------------------------------*/
 /**
- * A symbolic reference to another expression.
+ * A named symbol type.
  * @todo Fix symbolic functionality through program.
  * @bug Symbolic functionality is broken through the program.
  */
 struct sym {
-	char name; ///< The symbolic reference name
+	char name;          ///< The symbol name
+	struct expression *p; ///< The symbol parameter
 };
 typedef struct sym sym_t;
 

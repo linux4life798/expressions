@@ -7,6 +7,7 @@
 #include <stdio.h> // snprintf()
 #include <stdlib.h> // size_t and atol()
 #include "errors.h"
+#include "expression.h" // used in sym_t
 #include "types.h"
 
 /*---------------------------------------------*
@@ -150,8 +151,7 @@ sym_new_name(char name) {
  */
 void
 sym_free(sym_t sym) {
-	sym = sym; // do nothing
-	return ;
+	;
 }
 
 /** Generate a string from a sym_t.

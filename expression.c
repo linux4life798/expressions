@@ -8,6 +8,7 @@
 #include <stdlib.h> // has atol() among others
 //#include <limits.h>
 #include <string.h>
+#include <ctype.h> // character handling functions - isalpha(), isdigit(), isspace()
 
 #include "types.h"
 #include "errors.h"
@@ -151,8 +152,16 @@ expression_to_string (char *dst_str,
  *---------------------------------------------*/
 #define IS_WHITESPACE(c) ( ((c) == ' ') || ((c) == '\t') )
 #define IS_DIGIT(c)      ( ( '0' <= (c) ) && ( (c) <= '9') ) ///< \note Is defined in @see types.c.
+#define IS_ALPHA(c)      isalpha(c)
 
 #define SIZE_T_MAX ( ~( (size_t) (0) ) )
+
+#define PINDEX_MAX SIZE_T_MAX   ///< The max value of pindex_t
+#define PINDEX_BAD PINDEX_MAX ///< Special value of pindex_t that signals a bad value.
+typedef size_t pindex_t; ///< Type for an index into an expression string during parsing.
+                                ///< @note Should probably be moved to system integration section
+typedef size_t pcount_t; ///< Type for an item count during parsing.
+           	   	  	  	  	  	///< @note Should probably be moved to system integration section
 
 size_t
 number_len(size_t str_len, char *str) {
@@ -161,6 +170,42 @@ number_len(size_t str_len, char *str) {
         ;
     return index;
 }
+
+/**
+ * Find the index of the matching closing paren in a string.
+ * @param str_len Overall string length.
+ * @param str String to search in.
+ * @param start Index of the open paren to match.
+ * @return The index of the matching paren or PINDEX_BAD if no match was found.
+ * @note Assumes start is the index of the open paren to match and then moves forward.
+ */
+pindex_t
+find_matching (size_t str_len,
+               const char *str,
+               pindex_t start) {
+	pcount_t level;
+
+	// Increment the index past the initial open paren
+	if( (++start) >= str_len ) return PINDEX_BAD;
+	// Stepped up a level
+	level = 1;
+
+	// parse only for parens and stop when level returns to 0
+    for (;(start < str_len) && (level > 0);start++) {
+    	assert(str[start] != '\0');
+
+    	// modify level for parens
+    	if (str[start] == '(') level++;
+    	else if (str[start] == ')') level--;
+
+    	// when level is 0, we found the matching paren
+    	if (level == 0) return start;
+    }
+
+    // If we didn't find level 0 above, then we ran out of characters to scan
+    return PINDEX_BAD;
+}
+
 
 /** Same as strncpy, but throws an error if a null character is reached in src.
  *
@@ -234,6 +279,13 @@ string_to_expression (size_t str_len,
     size_t num_index = -1; // index of number at lowest level found
     size_t num_level = SIZE_T_MAX; // level of the current number found
     size_t num_len;                // length in chars of the number found
+
+    /* Statistics about Symbols found */
+    // Note: The lowest level matters when parsing a symbol fn. of a symbol. Ex. "sin( pi )"
+    int    sym_count = 0;          // indicates how many numbers have been seen on current pass
+    size_t sym_index = -1;         // index of symbol at lowest level found
+    size_t sym_level = SIZE_T_MAX; // level of the current symbol found
+    size_t sym_len;
 
 //    exp_buf left_operand;
 
@@ -314,6 +366,48 @@ string_to_expression (size_t str_len,
                     num_len   = (index+1)-start_index;
                 }
 
+            }
+            // if we encounter the start of a symbol name
+            else if( IS_ALPHA(c) ) {
+                ///@todo Implement symbol name parsing
+                pindex_t start_index = index;
+                pindex_t sym_index_tmp; ///< Used to explore the presence of a symbol parameter
+
+                // found one more symbol
+                sym_count++;
+
+                // get over symbol name
+                for (; (index < str_len) && IS_ALPHA(str[index]); index++)
+                	;
+                // one too far - since index will be incremented again in the for loop
+                index--;
+
+                // navigate to next real character -- using a temp index
+                for (sym_index_tmp = index+1; (sym_index_tmp < str_len) && IS_WHITESPACE(str[sym_index_tmp]); sym_index_tmp++)
+                	;
+
+                // check for presence of '(' signifying the start of a symbol parameter
+                if ( (sym_index_tmp < str_len) && (str[sym_index_tmp] == '(') ) {
+                	size_t end;
+                	// find end of parameter string
+                	end = find_matching(str_len, str, sym_index_tmp);
+
+                	// check if the parameter string is not valid
+                	if (end == PINDEX_BAD) {
+                		rerror("Syntax Error - Unmatched parenthesis around symbol parameter");
+                	}
+
+                	// parameter is valid
+                	// move index over symbol parameter also
+                	index = end;
+                }
+
+                // record sym if lowest level
+                if(level < sym_level) {
+                	sym_index = start_index;
+                	sym_level = level;
+                	sym_len   = (index+1) - start_index;
+                }
             }
             else {
                 // Throw Error - Unknown character encountered
