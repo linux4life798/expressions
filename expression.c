@@ -1,29 +1,31 @@
-/*
- * errors.c
+/** A compact math expression engine
+ * @file expression.c
  *
- *  Created on: Apr 6, 2014
- *      Author: Craig Hesling
+ * @date Apr 6, 2014
+ * @author Craig Hesling
  */
-
-
-
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // has atol() among others
 //#include <limits.h>
 #include <string.h>
 
+#include "types.h"
 #include "errors.h"
 #include "expression.h"
 
 
-/***********************************************
- * expression_t allocation interface functions
- ***********************************************/
+/*---------------------------------------------*
+ *     expression_t allocation functions       *
+ *---------------------------------------------*/
 
+/** New blank expression.
+ * This function creates the most basic empty expression.
+ * \return A new empty expression
+ */
 expression_t
 expression_new (void) {
     expression_t exp = (expression_t) malloc(sizeof(struct expression));
-    /* if (!exp) // throw error - expression_new: malloc could not do allocation */
+    assert(exp); // throw error - expression_new: malloc could not do allocation
     return exp;
 }
 
@@ -36,86 +38,110 @@ expression_new_value (value_t val) {
 }
 
 expression_t
-expression_new_sym (char op,
-                    expression_t left,
-                    expression_t right) {
+expression_new_tree (char op,
+                     expression_t left,
+                     expression_t right) {
 
     expression_t exp = expression_new ();
     exp->type = EXP_SYMBOLIC;
-    exp->data.sym.op = op;
-    exp->data.sym.left = left;
-    exp->data.sym.right = right;
+    exp->data.tree.op = op;
+    exp->data.tree.left = left;
+    exp->data.tree.right = right;
     return exp;
 }
 
+/** Free an expression.
+ * \param exp The expression to free
+ */
 void
 expression_free (expression_t exp) {
+    assert(exp);
     free(exp);
 }
 
 
 
-/***********************************************
- * expression_t manipulation functions
- ***********************************************/
+/*---------------------------------------------*
+ *     expression_t manipulation functions     *
+ *---------------------------------------------*/
 
 /* Evaluate Expression recursively */
 value_t
 expression_evaluate (expression_t exp) {
     if (exp->type == EXP_VALUE) return exp->data.val;
-    else /*if (exp->type == EXP_SYMBOLIC)*/ // Optimize for speed not errors
+    else if (exp->type == EXP_TREE)
     {
-        switch (exp->data.sym.op) {
+    	value_t ret_val;
+    	value_t left_val, right_val;
+
+    	ret_val.type = VAL_LINT;
+		left_val  = expression_evaluate(exp->data.tree.left);
+		right_val = expression_evaluate(exp->data.tree.right);
+        switch (exp->data.tree.op) {
         case '+':
-            return expression_evaluate(exp->data.sym.left) + expression_evaluate(exp->data.sym.right);
+			ret_val.data.lint = left_val.data.lint + right_val.data.lint;
             break;
         case '-':
-            return expression_evaluate(exp->data.sym.left) - expression_evaluate(exp->data.sym.right);
+        	ret_val.data.lint =  left_val.data.lint - right_val.data.lint;
             break;
         case '*':
-            return expression_evaluate(exp->data.sym.left) * expression_evaluate(exp->data.sym.right);
+        	ret_val.data.lint =  left_val.data.lint * right_val.data.lint;
             break;
         case '/':
-            return expression_evaluate(exp->data.sym.left) / expression_evaluate(exp->data.sym.right);
+        	ret_val.data.lint =  left_val.data.lint / right_val.data.lint;
             break;
         default:
             /* throw error - invalid operation in expression */
+        	ret_val.type = VAL_ERROR;
             break;
         }
+        return ret_val;
+    }
+    else //if(exp->type == EXP_SYMBOLIC) // Optimize for speed not errors
+    {
+    	assert((exp->type == EXP_SYMBOLIC));
+    	assert(0); //crash
     }
 
     /* throw error - invalid state in expression */
     //return -1; //error
+	assert(0);
+	return value_new_type(VAL_ERROR);
 }
 
 
-#define EXP_BUF_SIZE 256
-typedef char exp_buf[EXP_BUF_SIZE];
-
-/* Expression to String */
+/** Expression to String */
 void
-expression_to_string (char *str,
-					  expression_t exp) {
-    if (exp->type == EXP_VALUE) {
-            snprintf(str, EXP_BUF_SIZE, "%ld", exp->data.val);
-    }
-    else /*if (exp->type == EXP_SYMBOLIC)*/ // Optimize for speed not errors
-    {
-        exp_buf left, right;
-
-        expression_to_string (left, exp->data.sym.left);
-        expression_to_string (right, exp->data.sym.right);
-        snprintf(str, EXP_BUF_SIZE, "(%s %c %s)", left, exp->data.sym.op, right);
-    }
+expression_to_string (char *dst_str,
+					  expression_t src_exp) {
+	switch (src_exp->type) {
+	case EXP_VALUE:
+		value_to_string(dst_str, src_exp->data.val);
+        break;
+	case EXP_TREE:
+		{
+			exp_buf left, right;
+			expression_to_string (left, src_exp->data.tree.left);
+			expression_to_string (right, src_exp->data.tree.right);
+			snprintf(dst_str, EXP_BUF_SIZE, "(%s %c %s)", left, src_exp->data.tree.op, right);
+		}
+		break;
+	case EXP_SYMBOLIC:
+		sym_to_string(dst_str, src_exp->data.sym);
+        break;
+	default:
+		assert(0);
+		break;
+	}
 }
 
 
 
-/*
- * Helper functions for String to Expression
- */
+/*---------------------------------------------*
+ * Helper functions for String to Expression   *
+ *---------------------------------------------*/
 #define IS_WHITESPACE(c) ( ((c) == ' ') || ((c) == '\t') )
-#define IS_DIGIT(c)      ( ( '0' <= (c) ) && ( (c) <= '9') )
+#define IS_DIGIT(c)      ( ( '0' <= (c) ) && ( (c) <= '9') ) ///< \note Is defined in @see types.c.
 
 #define SIZE_T_MAX ( ~( (size_t) (0) ) )
 
@@ -127,25 +153,16 @@ number_len(size_t str_len, char *str) {
     return index;
 }
 
-/* Must have first char be digit */
-value_t
-string_to_value(size_t str_len, char const *str) {
-	char buf[40]; // log10(2^128) ~ 39
-	int index;
-
-	// copy number digits
-	for (index = 0; (index < str_len) && (index < (40-1)) /*need null byte*/ && IS_DIGIT(str[index]); index++) {
-		buf[index] = str[index];
-	}
-	// place null-byte
-	buf[index] = '\0';
-
-	return atol(buf);
-}
-
-
-
-/* String to Expression */
+/** String to Expression.
+ *
+ * @param str_len Length of given string
+ * @param str String to parse
+ * @return The expression_t representation of the inputed string
+ * @test Test for negative values
+ * @callgraph
+ * @todo Fix parser in \ref string_to_expression.
+ * @bug This parser is broken.
+ */
 expression_t
 string_to_expression (size_t str_len,
 					  char const *str) {
@@ -282,7 +299,7 @@ string_to_expression (size_t str_len,
 		right = string_to_expression(strlen(right_buf), right_buf);
 
 		/* Create symbolic expression from the sub expressions and the operation */
-		return expression_new_sym(str[op_index], left, right);
+		return expression_new_tree(str[op_index], left, right);
 	}
 	/* If number detected, use it */
 	else if (num_index != SIZE_T_MAX) {
@@ -301,4 +318,7 @@ string_to_expression (size_t str_len,
 		rerror("Syntax Error - No numbers or operations detected");
 	}
 
+	return NULL;
 }
+
+/* vim: set ts=4 sw=4 expandtab: */

@@ -1,4 +1,7 @@
 *~
 *.swp
 *.o
+*.log
+core
 expr
+docs

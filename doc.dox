@@ -1,0 +1,49 @@
+/**
+ * @author Craig Hesling (craig@hesling.com)
+ * @date Apr 6, 2014
+ *
+ * @mainpage General Info Index
+ * 
+ * @section intro_sec Introduction
+ * 
+ * TODO: Stick introduction here...
+ * @subsection Expressions
+ *
+ * Example:
+ * expression is @f$(1 + 2)@f$
+ *
+ * @dot
+ * digraph G{
+ * node [shape = record, height=.1];
+ * node0[label = "<f0> |<f1> \'+\'|<f2> "];
+ * node1[label = "<f0> |<f1> 1|<f2> "];
+ * node2[label = "<f0> |<f1> 2|<f2> "];
+ * "node0":f0 -> "node1":f1;
+ * "node0":f2 -> "node2":f1;
+ * }
+ * @enddot
+ *
+ * Example:
+ * expression is \f$(1 + 2) + 3\f$
+ *
+ * @dot
+ * digraph G{
+ * node [shape = record, height=.1];
+ * node0[label = "<f0> |<f1> \'+\'|<f2> "];
+ * node1[label = "<f0> |<f1> \'+\'|<f2> "];
+ * node2[label = "<f0> |<f1> 3|<f2> "];
+ * node3[label = "<f0> |<f1> 1|<f2> "];
+ * node4[label = "<f0> |<f1> 2|<f2> "];
+ * "node0":f0 -> "node1":f1;
+ * "node0":f2 -> "node2":f1;
+ * "node2":f0 -> "node3":f1;
+ * "node2":f2 -> "node4":f1;
+ * }
+ * @enddot
+ *
+ * @section Development
+ * 
+ * @subsection Quick Links
+ * - Main library interface file for \ref expression.h
+ * - Main library implementation file for \ref expression.c
+ */
