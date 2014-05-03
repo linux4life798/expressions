@@ -22,18 +22,7 @@ typedef int long sys_int_long;
 #define SYS_INT_LONG_T_STR_SIZE 11
 
 
-/*---------------------------------------------*
- *       undef - Undefined Values Types        *
- *---------------------------------------------*/
-enum undef {
-	UNDEF_ERROR, ///< Unknown Error
-	UNDEF_UNDEF, ///< Undefined Value
-	UNDEF_INF    ///< Infinity
-};
-typedef enum undef undef_t;
 
-void
-undef_to_string (char *dst_str, undef_t src_undef);
 
 /*---------------------------------------------*
  *               values                        *
@@ -50,7 +39,6 @@ struct value {
 		VAL_LINT
 	} type;
 	union {
-		//undef_t      undef;
 		sys_int_long lint;
 	} data;
 };

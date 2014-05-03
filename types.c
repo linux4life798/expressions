@@ -10,39 +10,6 @@
 #include "expression.h" // used in sym_t
 #include "types.h"
 
-/*---------------------------------------------*
- *       undef - Undefined Values Types        *
- *---------------------------------------------*/
-void
-undef_to_string (char *dst_str, undef_t src_undef) {
-	switch (src_undef) {
-	case UNDEF_UNDEF:
-		/* Say "Undef" */
-		dst_str[0] = 'U';
-		dst_str[1] = 'n';
-		dst_str[2] = 'd';
-		dst_str[3] = 'e';
-		dst_str[4] = 'f';
-		dst_str[5] = '\0';
-		break;
-	case UNDEF_INF:
-		/* Say "INF" */
-		dst_str[0] = 'I';
-		dst_str[1] = 'N';
-		dst_str[2] = 'F';
-		dst_str[3] = '\0';
-		break;
-	case UNDEF_ERROR:
-	default:
-		/* Say "ERR" */
-		dst_str[0] = 'E';
-		dst_str[1] = 'R';
-		dst_str[2] = 'R';
-		dst_str[3] = '\0';
-		break;
-	}
-}
-
 
 /*---------------------------------------------*
  *               values                        *

@@ -63,7 +63,6 @@ enum expression_type {
  * This union allows for the use of all the different expression data containers that corresponding to each \ref expression_type.
  */
 union expression_data {
-	//undef_t                     undef; ///< Info for EXP_UNDEF type.
 	value_t                     val;   ///< Value for EXP_VALUE type.
 	struct expression_data_tree tree;  ///< Data for EXP_TREE type.
 	sym_t                       sym;   ///< Data for EXP_SYMBOLIC type.
