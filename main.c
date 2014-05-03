@@ -12,6 +12,7 @@
 
 #include "errors.h"
 #include "types.h"
+#include "workspace.h"
 #include "expression.h"
 
 #define BLACK  30
@@ -158,6 +159,8 @@ test1(char *str) {
 }
 /// @callgraph
 int main(int argc, char *argv[]) {
+	workspace_init();
+
 	//char buf[512] = {0};
 	//expression_t e1;
 

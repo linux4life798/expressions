@@ -9,7 +9,6 @@
 
 #include <stddef.h> // size_t
 #include <limits.h> // for LONG_MIN
-#include "expression.h" // used in sym_t
 
 
 /*---------------------------------------------*
@@ -21,7 +20,16 @@ typedef int long sys_int_long;
 /// The length in chars for a long int string. 4 byte long - @f$ {\tt ceiling} \left( {\tt log10}(2^{4 \times 8 - 1}) \right) + 1@f$
 #define SYS_INT_LONG_T_STR_SIZE 11
 
+#define SIZE_T_MAX ( ~( (size_t) (0) ) )
+#define PINDEX_MAX SIZE_T_MAX ///< The max value of pindex_t
+#define PINDEX_BAD PINDEX_MAX ///< Special value of pindex_t that signals a bad value.
+typedef size_t pindex_t;      ///< Type for an index into an expression string during parsing.
+typedef size_t pcount_t;      ///< Type for an item count during parsing.
 
+#define IS_WHITESPACE(c) ( ((c) == ' ') || ((c) == '\t') )
+#define IS_DIGIT(c)      ( ( '0' <= (c) ) && ( (c) <= '9') ) ///< \note Is defined in @see types.c.
+#define IS_ALPHA(c)      isalpha(c)
+#define IS_ALNUM(c)      isalnum(c)
 
 
 /*---------------------------------------------*
@@ -55,38 +63,6 @@ string_to_value(size_t src_str_len, char const *src_str);
 
 void
 value_to_string (char *dst_str, value_t src_val);
-
-/*---------------------------------------------*
- *               symbolic                      *
- *---------------------------------------------*/
-/**
- * A named symbol type.
- * @todo Fix symbolic functionality through program.
- * @bug Symbolic functionality is broken through the program.
- */
-struct sym {
-	char name;          ///< The symbol name
-	struct expression *p; ///< The symbol parameter
-};
-typedef struct sym sym_t;
-
-sym_t
-sym_new(void);
-
-sym_t
-sym_new_name(char name);
-
-void
-sym_free(sym_t sym);
-
-void
-sym_to_string(char *dst_str, sym_t src_sym);
-
-//void
-//sym_set(char name, value_t num);
-//
-//value_t
-//sym_get(sym_t sym);
 
 
 #endif /* TYPES_H_INCLUDED */

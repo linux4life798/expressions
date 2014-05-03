@@ -17,10 +17,12 @@ CFLAGS += -DDEBUG # Enable debugging stuff
 all: expr docsquiet
 
 expression.o: expression.h expression.c
+symbolic.o: symbolic.h symbolic.c
+workspace.o: workspace.h workspace.c
 types.o: types.h types.c
 errors.o: errors.h errors.c
 
-expr: errors.o types.o expression.o main.o
+expr: errors.o types.o workspace.o symbolic.o expression.o main.o
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $+
 
 docs:

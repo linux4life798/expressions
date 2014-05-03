@@ -31,8 +31,6 @@ value_new_lint(sys_int_long lint) {
 }
 
 
-#define IS_DIGIT(c)      ( ( '0' <= (c) ) && ( (c) <= '9') ) /// @note Is defined in @see expression.c also.
-
 /** Create value from a string.
  * @param src_str_len The length of the actual buffer (not the number size).
  * @param src_str The source string.
@@ -82,99 +80,5 @@ value_to_string (char *dst_str, value_t src_val) {
 		break;
 	}
 }
-
-/*---------------------------------------------*
- *               symbolic                      *
- *---------------------------------------------*/
-//expression_t sym_names[26];
-//
-//#define sym_to_names_index(x)
-
-/** New symbolic object with default name.
- * @note This is mainly for future compatibility
- */
-sym_t
-sym_new(void){
-	sym_t sym;
-	sym.name = 'x'; ///< Default symbol is x
-	return sym;
-}
-
-/** New symbolic object whose name is set to name.
- */
-sym_t
-sym_new_name(char name) {
-	sym_t sym;
-	/* Check that the name is within range */
-	assert(('A' <= name) && (name <= 'Z'));
-	sym.name = name;
-	return sym;
-}
-
-/** Free a sym_t
- * @param sym The sym_t to free
- * @note Do nothing
- * @remark This is primarily for future compatibility
- */
-void
-sym_free(sym_t sym) {
-	;
-}
-
-/** Generate a string from a sym_t.
- * @param dst_str String to write to.
- * @param src_sym Symbolic type to read from.
- */
-void
-sym_to_string (char *dst_str, sym_t src_sym) {
-	dst_str[0] = src_sym.name;
-	dst_str[1] = '\0';
-}
-
-//void
-//sym_reset(void) {
-//	int i;
-//	for (i = 0; i < 26; i++) {
-//		sym_names[i].type = VAL_SYM;
-//		sym_names[i].data.sym.name = (i + 'A');
-//	}
-//}
-//
-//void
-//sym_set(char name, value_t val) {
-//    /* Check that the name is within range */
-//    assert(('A' <= name) && (name <= 'Z'));
-//    sym_names[name - 'A'] = val;
-//}
-//
-//value_t
-//sym_get(sym_t sym) {
-//	return sym_names[sym.name - 'A'];
-//}
-//
-///** Evaluate the symbol forward.
-// * Evaluates the symbol as far as possible towards making a non VAL_SYM @ref value::type .
-// * This means it will can follow symbols to other symbols until we get a non-VAL_SYM @ref value::type or the symbol is itself.
-// * @note This is done recursively.
-// * @param sym Symbol to evaluate
-// * @return The evaluated symbol
-// */
-//value_t
-//sym_evaluate(sym_t sym) {
-//	value_t *val = sym_get(sym);
-//
-//	// if we are pointing to a good number or NAN
-//	if (val->type != VAL_SYM) {
-//		return *val;
-//	}
-//
-//	// if we are pointing to our-self
-//	if (sym.name == val->data.sym.name) {
-//        return *val;
-//	}
-//
-//	// must be pointing to another symbol
-//	return sym_evaluate(val->data.sym); // better be inbounds
-//}
 
 /* vim: set ts=4 sw=4 expandtab: */

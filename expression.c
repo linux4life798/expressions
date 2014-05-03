@@ -12,6 +12,7 @@
 
 #include "types.h"
 #include "errors.h"
+#include "symbolic.h"
 #include "expression.h"
 
 
@@ -51,6 +52,14 @@ expression_new_tree (char op,
     return exp;
 }
 
+expression_t
+expression_new_sym (sym_t sym) {
+    expression_t exp = expression_new ();
+    exp->type = EXP_SYMBOLIC;
+    exp->data.sym = sym;
+    return exp;
+}
+
 /** Free an expression.
  * \param exp The expression to free
  */
@@ -59,7 +68,7 @@ expression_free (expression_t exp) {
     assert(exp);
 
     if (exp->type == EXP_SYMBOLIC) {
-    	sym_free(exp->data.sym);
+    	//sym_free(exp->data.sym);
     }
     else if (exp->type == EXP_TREE) {
     	expression_free(exp->data.tree.left);
@@ -110,7 +119,7 @@ expression_evaluate (expression_t exp) {
     else //if(exp->type == EXP_SYMBOLIC) // Optimize for speed not errors
     {
     	assert((exp->type == EXP_SYMBOLIC));
-    	assert(0); //crash
+    	pferror("expression_evaluate","SYMBOLIC types evaluator is unimplemented");
     }
 
     /* throw error - invalid state in expression */
@@ -150,18 +159,6 @@ expression_to_string (char *dst_str,
 /*---------------------------------------------*
  * Helper functions for String to Expression   *
  *---------------------------------------------*/
-#define IS_WHITESPACE(c) ( ((c) == ' ') || ((c) == '\t') )
-#define IS_DIGIT(c)      ( ( '0' <= (c) ) && ( (c) <= '9') ) ///< \note Is defined in @see types.c.
-#define IS_ALPHA(c)      isalpha(c)
-
-#define SIZE_T_MAX ( ~( (size_t) (0) ) )
-
-#define PINDEX_MAX SIZE_T_MAX   ///< The max value of pindex_t
-#define PINDEX_BAD PINDEX_MAX ///< Special value of pindex_t that signals a bad value.
-typedef size_t pindex_t; ///< Type for an index into an expression string during parsing.
-                                ///< @note Should probably be moved to system integration section
-typedef size_t pcount_t; ///< Type for an item count during parsing.
-           	   	  	  	  	  	///< @note Should probably be moved to system integration section
 
 size_t
 number_len(size_t str_len, char *str) {
@@ -248,7 +245,6 @@ str_cpy(char *dest, const char *src, size_t count) {
  * @callgraph
  * @note level was type int - changed to unsigned to temporarily quiet compiler
  * @bug Cannot parse negative numbers
- * @bug Cannot parse variables
  */
 expression_t
 string_to_expression (size_t str_len,
@@ -289,7 +285,10 @@ string_to_expression (size_t str_len,
 
 //    exp_buf left_operand;
 
-    /* Scan through elements of string from left to right once */
+    /*
+     * Stage 1
+     * Scan through elements of string from left to right once
+     */
     for(index = 0; index < str_len; index++) {
     	/* Grab current char */
         char c = str[index];
@@ -419,7 +418,10 @@ string_to_expression (size_t str_len,
 
     } // for() end
 
-	/* Analyze what happened */
+    /*
+     * Stage 2
+     * Analyze what happened
+     */
 
     // Two Main Cases: 1) Found an operation -- multiple terms 2) Else, found just a number
 
@@ -464,6 +466,12 @@ string_to_expression (size_t str_len,
 		/* Create symbolic expression from the sub expressions and the operation */
 		return expression_new_tree(str[op_index], left, right);
 	}
+
+	/* If only a symbol detected, use it */
+	else if (sym_index != SIZE_T_MAX) {
+		return expression_new_sym( string_to_sym(sym_len, &str[sym_index]) );
+	}
+
 	/* If number detected, use it */
 	else if (num_index != SIZE_T_MAX) {
 		if (num_count == 1) {

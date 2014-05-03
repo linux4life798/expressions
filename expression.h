@@ -4,19 +4,10 @@
  * @date Apr 6, 2014
  * @author Craig Hesling
  */
-#ifndef EXPRESSION_H_INCLUDED
-#define EXPRESSION_H_INCLUDED
 
-#include <stddef.h>
-
-#include "types.h"
-
-/*---------------------------------------------*
- *     Misc. String Buffer Definitions         *
- *---------------------------------------------*/
-#define EXP_BUF_SIZE 256
-typedef char exp_buf[EXP_BUF_SIZE];
-
+/* Specific types needed by other headers */
+#ifndef _EXPRESSION_T_DEFINED_
+#define _EXPRESSION_T_DEFINED_
 
 /*---------------------------------------------*
  *     expression_t definition                 *
@@ -25,6 +16,24 @@ typedef char exp_buf[EXP_BUF_SIZE];
  * The type used internally for representing expressions.
  */
 typedef struct expression *expression_t; // declared here for future dependent structs
+
+#endif // _EXPRESSION_T_DEFINED_
+
+
+/* The rest of the declarations */
+#ifndef EXPRESSION_H_INCLUDED
+#define EXPRESSION_H_INCLUDED
+
+#include <stddef.h>
+
+#include "types.h"
+#include "symbolic.h"
+
+/*---------------------------------------------*
+ *     Misc. String Buffer Definitions         *
+ *---------------------------------------------*/
+#define EXP_BUF_SIZE 256
+typedef char exp_buf[EXP_BUF_SIZE];
 
 
 /*---------------------------------------------*
@@ -95,6 +104,9 @@ expression_t
 expression_new_tree (char op,
                      expression_t left,
                      expression_t right);
+
+expression_t
+expression_new_sym (sym_t sym);
 
 void
 expression_free (expression_t exp);
