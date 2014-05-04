@@ -408,8 +408,12 @@ string_to_expression (size_t str_len,
 		expression_t left, right;
 
 		/* Create temporary sub expression string buffers */
-		char left_buf[ left_buf_size ];
-		char right_buf[ right_buf_size ];
+        ///@note left_buf and right_buf were changed to use malloc to avoid errors with C90 compilers
+        ///@todo Discontinue the use of malloc for left_buf and right_buf
+        char *left_buf = malloc(left_buf_size);
+        char *right_buf = malloc(right_buf_size);
+//		char left_buf[ left_buf_size ];
+//		char right_buf[ right_buf_size ];
 
 		/* Build left expression buffer */
 		memset(left_buf + ( left_buf_size - (op_level + sizeof(char)) ), ')', op_level); // place op_level many closing parens to match the op_level open ones
@@ -427,6 +431,9 @@ string_to_expression (size_t str_len,
 		/* Recurse on the left and right expressions */
 		left  = string_to_expression(strlen(left_buf), left_buf);
 		right = string_to_expression(strlen(right_buf), right_buf);
+
+        free(left_buf);
+        free(right_buf);
 
 		/* Create symbolic expression from the sub expressions and the operation */
 		return expression_new_tree(str[op_index], left, right);
