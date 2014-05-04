@@ -1,6 +1,7 @@
-OPTIONS = -g -ggdb
-OPTIONS += -Wall -Wextra -O0
+OPTIONS = -g -ggdb -O0
+OPTIONS += -Wall -Wextra
 OPTIONS += -pedantic
+#OPTIONS += --std=gnu89
 OPTIONS += --std=c99
 #OPTIONS += -Wc++-compat
 
@@ -14,7 +15,7 @@ CFLAGS += -DDEBUG # Enable debugging stuff
 
 .PHONY: all clean docs docsquiet
 
-all: expr docsquiet
+all: expr docsauiet
 
 expression.o: expression.h expression.c
 symbolic.o: symbolic.h symbolic.c

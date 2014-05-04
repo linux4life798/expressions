@@ -4,14 +4,15 @@
  * @date Apr 23, 2014
  * @author Craig Hesling
  *
- * Contains some standard types used throughout the library.
+ * Contains standard types, macros, and functions used throughout the library.
  * Most notably, this is the home of the @ref value_t.
  */
 #ifndef TYPES_H_INCLUDED
 #define TYPES_H_INCLUDED
 
-#include <stddef.h> // size_t
+#include <stddef.h> /* size_t */
 #include <limits.h> // for LONG_MIN
+#include <ctype.h>  // character handling functions - isalpha(), isdigit(), isspace()
 
 
 /*---------------------------------------------*
@@ -67,6 +68,15 @@ string_to_value(size_t src_str_len, char const *src_str);
 void
 value_to_string (char *dst_str, value_t src_val);
 
+
+/*---------------------------------------------*
+ *                 misc                        *
+ *---------------------------------------------*/
+
+pindex_t
+find_matching (size_t str_len,
+               const char *str,
+               pindex_t start);
 
 #endif /* TYPES_H_INCLUDED */
 

@@ -8,7 +8,6 @@
 #include <stdlib.h> // has atol() among others
 //#include <limits.h>
 #include <string.h>
-#include <ctype.h> // character handling functions - isalpha(), isdigit(), isspace()
 
 #include "types.h"
 #include "errors.h"
@@ -167,42 +166,6 @@ number_len(size_t str_len, char *str) {
         ;
     return index;
 }
-
-/**
- * Find the index of the matching closing paren in a string.
- * @param str_len Overall string length.
- * @param str String to search in.
- * @param start Index of the open paren to match.
- * @return The index of the matching paren or PINDEX_BAD if no match was found.
- * @note Assumes start is the index of the open paren to match and then moves forward.
- */
-pindex_t
-find_matching (size_t str_len,
-               const char *str,
-               pindex_t start) {
-	pcount_t level;
-
-	// Increment the index past the initial open paren
-	if( (++start) >= str_len ) return PINDEX_BAD;
-	// Stepped up a level
-	level = 1;
-
-	// parse only for parens and stop when level returns to 0
-    for (;(start < str_len) && (level > 0);start++) {
-    	assert(str[start] != '\0');
-
-    	// modify level for parens
-    	if (str[start] == '(') level++;
-    	else if (str[start] == ')') level--;
-
-    	// when level is 0, we found the matching paren
-    	if (level == 0) return start;
-    }
-
-    // If we didn't find level 0 above, then we ran out of characters to scan
-    return PINDEX_BAD;
-}
-
 
 /** Same as strncpy, but throws an error if a null character is reached in src.
  *
