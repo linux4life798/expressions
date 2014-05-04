@@ -11,6 +11,7 @@
 
 #include "types.h"
 #include "symbolic.h"
+#include "expression_lite.h" /* expression_t only exists in expression_lite.h */
 
 /*---------------------------------------------*
  *     Misc. String Buffer Definitions         *
