@@ -7,7 +7,7 @@
  * @section intro_sec Introduction
  * 
  * TODO: Stick introduction here...
- * @subsection Expressions
+ * @subsection expressions Expressions
  *
  * Example:
  * expression is @f$(1 + 2)@f$
@@ -41,9 +41,21 @@
  * }
  * @enddot
  *
- * @section Development
+ * @section development Development
  * 
- * @subsection Quick Links
+ * @subsection quick_links Quick Links
  * - Main library interface file for \ref expression.h
  * - Main library implementation file for \ref expression.c
+ *
+ * @subsection debug_info Helpful for Debugging
+ * - valgrind --tool=memcheck --track-origins=yes --undef-value-errors=yes --leak-check=full ./expr "1 + 2"
+ * - valgrind --tool=memcheck --track-origins=yes --undef-value-errors=yes --leak-check=full ./expr "1 + 2"
+ * - target remote | /usr/lib/valgrind/../../bin/vgdb
+ *
+ * @subsection future_changes Future Wish List
+ * - Make string_to_expression take a start index parameter.
+ *    This would allow recursive calls to not need temporary string
+ *    buffers and syntax errors to contain proper index numbers.
+ * - Handle floats and doubles
+ * - Handle builtin functions
  */
