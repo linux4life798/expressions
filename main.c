@@ -127,7 +127,7 @@ test1(char *str) {
 	expression_t e1;
 	value_t val;
 
-	/* Check that there was a valid str arguent given */
+	/* Check that there was a valid str argument given */
 	if (!str) {
 		fprintf(stderr, "test1: Error - str is NULL\n");
 		exit (2);
