@@ -432,8 +432,11 @@ string_to_expression (size_t str_len,
 		return expression_new_tree(str[op_index], left, right);
 	}
 
-	/* If only a symbol detected, use it */
+	/* If a symbol was detected, use it */
 	else if (sym_index != SIZE_T_MAX) {
+		if(num_index != SIZE_T_MAX) {
+			rerror("Syntax Error - Symbol and number detected without an operation");
+		}
 		return expression_new_sym( string_to_sym(sym_len, &str[sym_index]) );
 	}
 
