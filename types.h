@@ -39,20 +39,31 @@ typedef size_t pcount_t;      ///< Type for an item count during parsing.
 /*---------------------------------------------*
  *               values                        *
  *---------------------------------------------*/
+
+/**
+ * value type selector
+ */
+enum value_types {
+	VAL_ERROR,
+	VAL_UNDEF,
+	VAL_INF,
+	VAL_LINT
+};
+
+/**
+ * value data container provider
+ */
+union value_data {
+	sys_int_long lint;
+};
+ 
 /** Represents a numeric value or an error.
  * This is the structure that abstractly represents numeric values
  *  including undefined values and errors they may be associated with.
  */
 struct value {
-	enum value_types {
-		VAL_ERROR,
-		VAL_UNDEF,
-		VAL_INF,
-		VAL_LINT
-	} type;
-	union {
-		sys_int_long lint;
-	} data;
+	enum value_types type;
+	union value_data data;
 };
 typedef struct value value_t;
 
