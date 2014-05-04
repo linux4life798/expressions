@@ -15,7 +15,7 @@ CFLAGS += -DDEBUG # Enable debugging stuff
 
 .PHONY: all clean docs docsquiet
 
-all: expr docsauiet
+all: expr docsquiet
 
 expression.o: expression.h expression.c
 symbolic.o: symbolic.h symbolic.c
