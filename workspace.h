@@ -4,8 +4,8 @@
  * @date Apr 25, 2014
  * @author Craig Hesling
  */
-#ifndef WORKSPACE_H_
-#define WORKSPACE_H_
+#ifndef _WORKSPACE_H_
+#define _WORKSPACE_H_
 
 #define WORKSPACE_NAME_SIZE 10
 #define WORKSPACE_SIZE 10
@@ -36,6 +36,6 @@ workspace_unset(char *name);
 void *
 workspace_get(char *name);
 
-#endif /* WORKSPACE_H_ */
+#endif /* _WORKSPACE_H_ */
 
 /* vim: set ts=4 sw=4 expandtab: */

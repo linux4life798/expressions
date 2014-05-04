@@ -24,7 +24,7 @@ typedef struct expression *expression_t; // declared here for future dependent s
 #ifndef EXPRESSION_H_INCLUDED
 #define EXPRESSION_H_INCLUDED
 
-#include <stddef.h>
+#include <stddef.h> /* size_t */
 
 #include "types.h"
 #include "symbolic.h"

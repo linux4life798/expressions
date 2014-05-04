@@ -22,8 +22,6 @@
 
 /**
  * A named symbol type.
- * @todo Fix symbolic functionality through program.
- * @bug Symbolic functionality is broken through the program.
  * A symbol can refer to a variable or function.
  * The field p is NULL when no parameter exists.
  */

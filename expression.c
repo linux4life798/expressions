@@ -225,6 +225,9 @@ str_cpy(char *dest, const char *src, size_t count) {
 
 /** Convert String to an Expression.
  * Parses a string into an expression.
+ * @note level was type int - changed to unsigned to temporarily quiet compiler
+ * @bug Cannot parse negative numbers
+ * @warning Symbols must start with ALPHA chars to be properly identified.
  *
  * @section parsing_algorithm Algorithm
  * @subsection parsing_overview Parsing Overview
@@ -241,10 +244,9 @@ str_cpy(char *dest, const char *src, size_t count) {
  * @param str_len Length of given string
  * @param str String to parse
  * @return The expression_t representation of the inputed string
- * @test Test for negative values
  * @callgraph
- * @note level was type int - changed to unsigned to temporarily quiet compiler
- * @bug Cannot parse negative numbers
+ *
+ * @test Test for negative values
  */
 expression_t
 string_to_expression (size_t str_len,
@@ -278,7 +280,7 @@ string_to_expression (size_t str_len,
 
     /* Statistics about Symbols found */
     // Note: The lowest level matters when parsing a symbol fn. of a symbol. Ex. "sin( pi )"
-    int    sym_count = 0;          // indicates how many numbers have been seen on current pass
+    int    sym_count = 0;          // indicates how many symbols have been seen on current pass
     size_t sym_index = -1;         // index of symbol at lowest level found
     size_t sym_level = SIZE_T_MAX; // level of the current symbol found
     size_t sym_len;
@@ -345,6 +347,7 @@ string_to_expression (size_t str_len,
             break;
 
         default:
+        	///@todo Allow symbols to be detected when they start with numeric digits also. @ref string_to_sym is already compatible.
 
         	// if we encounter the start of a number
             if( IS_DIGIT(c) )
@@ -356,7 +359,7 @@ string_to_expression (size_t str_len,
                 // get over number
                 for (; (index < str_len) && IS_DIGIT(str[index]); index++ )
                     ;
-                // one too far - since index will be incremented again in the for loop
+                // one too far - since index will be incremented again in the outer most parsing for loop
                 index--;
 
                 if (level < num_level) {
@@ -366,22 +369,21 @@ string_to_expression (size_t str_len,
                 }
 
             }
-            // if we encounter the start of a symbol name
+            // if we encounter the start of a symbol name - looks for alpha char
             else if( IS_ALPHA(c) ) {
-                ///@todo Implement symbol name parsing
-                pindex_t start_index = index;
-                pindex_t sym_index_tmp; ///< Used to explore the presence of a symbol parameter
+                pindex_t start_index = index; ///< Store original index
+                pindex_t sym_index_tmp;       ///< Used to explore the presence of a symbol parameter
 
                 // found one more symbol
                 sym_count++;
 
                 // get over symbol name
-                for (; (index < str_len) && IS_ALPHA(str[index]); index++)
+                for (; (index < str_len) && IS_ALNUM(str[index]); index++)
                 	;
-                // one too far - since index will be incremented again in the for loop
-                index--;
+                // one too far - since index will be incremented again in the outer most parsing for loop
+                index--; // ready to exit symbol sub-parser
 
-                // navigate to next real character -- using a temp index
+                // navigate over possible whitespace to next real character -- using a temp index
                 for (sym_index_tmp = index+1; (sym_index_tmp < str_len) && IS_WHITESPACE(str[sym_index_tmp]); sym_index_tmp++)
                 	;
 
@@ -396,9 +398,9 @@ string_to_expression (size_t str_len,
                 		rerror("Syntax Error - Unmatched parenthesis around symbol parameter");
                 	}
 
-                	// parameter is valid
+                	// parameter must be valid
                 	// move index over symbol parameter also
-                	index = end;
+                	index = end; // ready to exit symbol sub-parser
                 }
 
                 // record sym if lowest level

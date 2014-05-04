@@ -3,6 +3,9 @@
  *
  * @date Apr 23, 2014
  * @author Craig Hesling
+ *
+ * Contains some standard types used throughout the library.
+ * Most notably, this is the home of the @ref value_t.
  */
 #ifndef TYPES_H_INCLUDED
 #define TYPES_H_INCLUDED

@@ -26,7 +26,7 @@ sym_new_name(char *name) {
 	assert(name);
 	assert(strlen(name) < SYMBOLIC_NAME_SIZE);
 
-	///@todo Should probably check that the name is contains valid chars
+	///@todo Should probably check that the name contains valid chars (printable)
 	strncpy(name, sym.name, SYMBOLIC_NAME_SIZE);
 	return sym;
 }

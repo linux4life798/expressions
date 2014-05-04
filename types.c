@@ -3,9 +3,13 @@
  *
  * @date Apr 23, 2014
  * @author Craig Hesling
+ *
+ * Contains some standard types used throughout the library.
+ * Most notably, this is the home of the @ref value_t.
  */
-#include <stdio.h> // snprintf()
-#include <stdlib.h> // size_t and atol()
+#include <stdio.h> /* snprintf() */
+#include <stddef.h> /* size_t */
+#include <stdlib.h> /* atol() */
 #include "errors.h"
 #include "expression.h" // used in sym_t
 #include "types.h"
