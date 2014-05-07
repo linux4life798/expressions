@@ -45,20 +45,22 @@ value_new_lint(sys_int_long lint) {
 value_t
 string_to_value(size_t src_str_len, char const *src_str) {
 	value_t val;
-	char buf[40]; // for long int: log10(2^128) ~ 39
-	size_t index;
+//	char buf[40]; // for long int: log10(2^128) ~ 39
+//	size_t index;
+
+	if((src_str_len == 0) || (src_str_len > 40)) pferror("string_to_value","string length given is not within usage range");
 
 	/* Prep. the number string to use in atol() */
 	// copy number digits
-	for (index = 0; (index < src_str_len) && (index < (40-1)) /*need null byte*/ && IS_DIGIT(src_str[index]); index++) {
-		buf[index] = src_str[index];
-	}
+//	for (index = 0; (index < src_str_len) && (index < (40-1)) /*need null byte*/ && IS_DIGIT(src_str[index]); index++) {
+//		buf[index] = src_str[index];
+//	}
 	// place null-byte
-	buf[index] = '\0';
+//	buf[index] = '\0';
 
 	/* Create the value using atol() */
 	val.type = VAL_LINT; ///< @note Here we assume it is a Long Int
-	val.data.lint = (sys_int_long) atol(buf); ///< @warning Uses system atol() function
+	val.data.lint = (sys_int_long) atol(src_str); ///< @warning Uses system atol() function at index 0 on the bare string given
 	return val;
 }
 
