@@ -249,6 +249,7 @@ string_to_expression (size_t str_len,
     size_t sym_len;
 
 //    exp_buf left_operand;
+    assert(str_len > 0); // must has size of at least 1
 
     /*
      * Stage 1
@@ -397,43 +398,65 @@ string_to_expression (size_t str_len,
 
 	/* If operation was detected, use it */
 	if (op_index != SIZE_T_MAX) {
+		pindex_t sindex; // search index
+		pcount_t prm;    // number of open parens removed from one of the sides of the string
+
 		// OpIndex + OpLevel + NullByte
 		// (size of str to left of op) + (# of parens to add) + (1 null byte)
-		size_t left_buf_size = op_index + op_level + sizeof(char);
+//		size_t left_buf_size = op_index + op_level + sizeof(char);
 		// StrLen - ( OpIndex + 1 ) + Level + NullByte
 		// str_len - (op_index + 1) + (# of parens to add) + (1 null byte)
-		size_t right_buf_size = str_len - (op_index + 1) + op_level + sizeof(char);
+//		size_t right_buf_size = str_len - (op_index + 1) + op_level + sizeof(char);
 
 		// We found the primary left-most operation
 		expression_t left, right;
 
 		/* Create temporary sub expression string buffers */
         ///@note left_buf and right_buf were changed to use malloc to avoid errors with C90 compilers
-        ///@todo Discontinue the use of malloc for left_buf and right_buf
-        char *left_buf = malloc(left_buf_size);
-        char *right_buf = malloc(right_buf_size);
-//		char left_buf[ left_buf_size ];
-//		char right_buf[ right_buf_size ];
+//        char *left_buf = malloc(left_buf_size);
+//        char *right_buf = malloc(right_buf_size);
 
 		/* Build left expression buffer */
-		memset(left_buf + ( left_buf_size - (op_level + sizeof(char)) ), ')', op_level); // place op_level many closing parens to match the op_level open ones
-		str_cpy(left_buf , str , op_index); // will copy op_index bytes
-		left_buf[left_buf_size-1] = '\0'; // place ending NULL byte
-//		strncpy(left_buf, str, op_index); // will copy op_index bytes then one NULL byte (NO NULL BYTE PLACED when n char limit reached)
+
+        prm = 0;
+        // find start of inner expression by eliminating open parens from left side
+        for (sindex=0; (sindex < str_len) && (prm < op_level); sindex++) {
+        	if (str[sindex] == '(') prm++;
+        	assert(sindex < op_index); // don't go past operation's index
+        }
+        // sindex should now be one after last paren found
+
+        left  = string_to_expression(op_index-sindex, &str[sindex]);
+
+//		memset(left_buf + ( left_buf_size - (op_level + sizeof(char)) ), ')', op_level); // place op_level many closing parens to match the op_level open ones
+//		str_cpy(left_buf , str , op_index); // will copy op_index bytes
+//		left_buf[left_buf_size-1] = '\0'; // place ending NULL byte
 
 		/* Build right expression buffer */
-		memset(right_buf, '(', op_level);
+
+        prm = 0;
+        // find start of inner expression by eliminating open parens from right side
+        for (sindex=str_len-1; (0 < sindex) && (prm < op_level); sindex--) {
+        	//pindex_t rindex = (str_len-1) - sindex; // calculate index coming from right to left
+        	if (str[sindex] == ')') prm++;
+        	assert(sindex > op_index); // don't go past operation's index
+        }
+        // sindex should now be one before last paren found
+        sindex++; // use as upper size
+
+        right = string_to_expression(sindex - (op_index+1), &str[op_index + 1]);
+
+//		memset(right_buf, '(', op_level);
 		// to=(at the beginning, just past any open parens) from=(one past op_index) count=(diff. of the original length and the count up to and including the operation)
-		str_cpy(right_buf+op_level , str+op_index+1 , str_len-(op_index+1));
-		right_buf[right_buf_size-1] = '\0'; // place ending NULL byte
-//		strncpy(right_buf + op_level, str + op_index + 1, str_len - op_index - 1);
+//		str_cpy(right_buf+op_level , str+op_index+1 , str_len-(op_index+1));
+//		right_buf[right_buf_size-1] = '\0'; // place ending NULL byte
 
 		/* Recurse on the left and right expressions */
-		left  = string_to_expression(strlen(left_buf), left_buf);
-		right = string_to_expression(strlen(right_buf), right_buf);
+//		left  = string_to_expression(strlen(left_buf), left_buf);
+//		right = string_to_expression(strlen(right_buf), right_buf);
 
-        free(left_buf);
-        free(right_buf);
+//        free(left_buf);
+//        free(right_buf);
 
 		/* Create symbolic expression from the sub expressions and the operation */
 		return expression_new_tree(str[op_index], left, right);
