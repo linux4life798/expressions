@@ -1,0 +1,138 @@
+\hypertarget{types_8c}{\section{types.\+c File Reference}
+\label{types_8c}\index{types.\+c@{types.\+c}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stddef.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}errors.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}expression.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\\*
+Include dependency graph for types.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{types_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t} \hyperlink{types_8c_a82b79a7bbb2da51fd09d5f5c90c5105a}{value\+\_\+new\+\_\+type} (enum \hyperlink{types_8h_a2763ddd86ab6e5f5f4c34c0561d4cd39}{value\+\_\+types} type)
+\item 
+\hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t} \hyperlink{types_8c_ab4456b47af2527b772ee8db5a367c66b}{value\+\_\+new\+\_\+lint} (\hyperlink{types_8h_a5b2030ae244cd6621f11f4bf6d181dbf}{sys\+\_\+int\+\_\+long} lint)
+\item 
+\hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t} \hyperlink{types_8c_a9c194ae881900b4376e761e2294117f9}{string\+\_\+to\+\_\+value} (size\+\_\+t src\+\_\+str\+\_\+len, char const $\ast$src\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Create value from a string. \end{DoxyCompactList}\item 
+void \hyperlink{types_8c_a4560a9f9bfc3ee07f105b16cc4230964}{value\+\_\+to\+\_\+string} (char $\ast$dst\+\_\+str, \hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t} src\+\_\+val)
+\item 
+\hyperlink{types_8h_adf276b495f7366f87ee85dc7df2fe32e}{pindex\+\_\+t} \hyperlink{types_8c_a57807e65ff8a4886f850f98d347e44fc}{find\+\_\+matching} (size\+\_\+t str\+\_\+len, const char $\ast$str, \hyperlink{types_8h_adf276b495f7366f87ee85dc7df2fe32e}{pindex\+\_\+t} start)
+\begin{DoxyCompactList}\small\item\em Find the index of the matching closing paren in a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+Apr 23, 2014 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Craig Hesling
+\end{DoxyAuthor}
+Contains standard types, macros, and functions used throughout the library. Most notably, this is the home of the \hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t}. 
+
+\subsection{Function Documentation}
+\hypertarget{types_8c_a57807e65ff8a4886f850f98d347e44fc}{\index{types.\+c@{types.\+c}!find\+\_\+matching@{find\+\_\+matching}}
+\index{find\+\_\+matching@{find\+\_\+matching}!types.\+c@{types.\+c}}
+\subsubsection[{find\+\_\+matching}]{\setlength{\rightskip}{0pt plus 5cm}{\bf pindex\+\_\+t} find\+\_\+matching (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{str\+\_\+len, }
+\item[{const char $\ast$}]{str, }
+\item[{{\bf pindex\+\_\+t}}]{start}
+\end{DoxyParamCaption}
+)}}\label{types_8c_a57807e65ff8a4886f850f98d347e44fc}
+
+
+Find the index of the matching closing paren in a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+\_\+len} & Overall string length. \\
+\hline
+{\em str} & String to search in. \\
+\hline
+{\em start} & Index of the open paren to match. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the matching paren or P\+I\+N\+D\+E\+X\+\_\+\+B\+A\+D if no match was found. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Assumes start is the index of the open paren to match and then moves forward. 
+\end{DoxyNote}
+\hypertarget{types_8c_a9c194ae881900b4376e761e2294117f9}{\index{types.\+c@{types.\+c}!string\+\_\+to\+\_\+value@{string\+\_\+to\+\_\+value}}
+\index{string\+\_\+to\+\_\+value@{string\+\_\+to\+\_\+value}!types.\+c@{types.\+c}}
+\subsubsection[{string\+\_\+to\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf value\+\_\+t} string\+\_\+to\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{src\+\_\+str\+\_\+len, }
+\item[{char const $\ast$}]{src\+\_\+str}
+\end{DoxyParamCaption}
+)}}\label{types_8c_a9c194ae881900b4376e761e2294117f9}
+
+
+Create value from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src\+\_\+str\+\_\+len} & The length of the actual buffer (not the number size). \\
+\hline
+{\em src\+\_\+str} & The source string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value in the source string. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Must have first char be digit 
+
+Currently we only do Long Ints 
+\end{DoxyNote}
+$<$ \begin{DoxyNote}{Note}
+Here we assume it is a Long Int
+\end{DoxyNote}
+$<$ \begin{DoxyWarning}{Warning}
+Uses system atol() function at index 0 on the bare string given 
+\end{DoxyWarning}
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{types_8c_a9c194ae881900b4376e761e2294117f9_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{types_8c_ab4456b47af2527b772ee8db5a367c66b}{\index{types.\+c@{types.\+c}!value\+\_\+new\+\_\+lint@{value\+\_\+new\+\_\+lint}}
+\index{value\+\_\+new\+\_\+lint@{value\+\_\+new\+\_\+lint}!types.\+c@{types.\+c}}
+\subsubsection[{value\+\_\+new\+\_\+lint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf value\+\_\+t} value\+\_\+new\+\_\+lint (
+\begin{DoxyParamCaption}
+\item[{{\bf sys\+\_\+int\+\_\+long}}]{lint}
+\end{DoxyParamCaption}
+)}}\label{types_8c_ab4456b47af2527b772ee8db5a367c66b}
+\hypertarget{types_8c_a82b79a7bbb2da51fd09d5f5c90c5105a}{\index{types.\+c@{types.\+c}!value\+\_\+new\+\_\+type@{value\+\_\+new\+\_\+type}}
+\index{value\+\_\+new\+\_\+type@{value\+\_\+new\+\_\+type}!types.\+c@{types.\+c}}
+\subsubsection[{value\+\_\+new\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf value\+\_\+t} value\+\_\+new\+\_\+type (
+\begin{DoxyParamCaption}
+\item[{enum {\bf value\+\_\+types}}]{type}
+\end{DoxyParamCaption}
+)}}\label{types_8c_a82b79a7bbb2da51fd09d5f5c90c5105a}
+\hypertarget{types_8c_a4560a9f9bfc3ee07f105b16cc4230964}{\index{types.\+c@{types.\+c}!value\+\_\+to\+\_\+string@{value\+\_\+to\+\_\+string}}
+\index{value\+\_\+to\+\_\+string@{value\+\_\+to\+\_\+string}!types.\+c@{types.\+c}}
+\subsubsection[{value\+\_\+to\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}void value\+\_\+to\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dst\+\_\+str, }
+\item[{{\bf value\+\_\+t}}]{src\+\_\+val}
+\end{DoxyParamCaption}
+)}}\label{types_8c_a4560a9f9bfc3ee07f105b16cc4230964}
+$<$ \begin{DoxyWarning}{Warning}
+Unknown types of \hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t} will just assert(false) here. 
+\end{DoxyWarning}

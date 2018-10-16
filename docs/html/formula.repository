@@ -1,0 +1,3 @@
+\form#0:$(1 + 2)$
+\form#1:$(1 + 2) + 3$
+\form#2:$ {\tt ceiling} \left( {\tt log10}(2^{4 \times 8 - 1}) \right) + 1$

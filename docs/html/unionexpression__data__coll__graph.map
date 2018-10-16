@@ -1,0 +1,7 @@
+<map id="expression_data" name="expression_data">
+<area shape="rect" id="node4" href="$structexpression.html" title="The stored representation of mathematical expressions. " alt="" coords="69,510,155,607"/>
+<area shape="rect" id="node2" href="$structsym.html" title="A named symbol type. " alt="" coords="5,699,72,797"/>
+<area shape="rect" id="node7" href="$structexpression__data__tree.html" title="Expression data container for the expanded expression. " alt="" coords="112,699,259,797"/>
+<area shape="rect" id="node10" href="$structvalue.html" title="Represents a numeric value or an error. " alt="" coords="83,174,141,271"/>
+<area shape="rect" id="node12" href="$unionvalue__data.html" title="value data container provider " alt="" coords="69,6,155,103"/>
+</map>

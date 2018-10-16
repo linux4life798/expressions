@@ -1,0 +1,148 @@
+\hypertarget{symbolic_8h}{\section{symbolic.\+h File Reference}
+\label{symbolic_8h}\index{symbolic.\+h@{symbolic.\+h}}
+}
+{\ttfamily \#include $<$stddef.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}expression\+\_\+lite.\+h\char`\"{}}\\*
+Include dependency graph for symbolic.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{symbolic_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structsym}{sym}
+\begin{DoxyCompactList}\small\item\em A named symbol type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{symbolic_8h_aeb7545cf4c9c6df72954b9409a00a885}{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+Z\+E}~10
+\item 
+\#define \hyperlink{symbolic_8h_a171adf6d50315c5e3af7aaaef3bd90ce}{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+P\+\_\+\+S\+T\+R\+\_\+\+S\+I\+Z\+E}~16
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structsym}{sym} \hyperlink{symbolic_8h_a32ce0f63fa539078e25332dae6b7c77c}{sym\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{symbolic_8h_a32ce0f63fa539078e25332dae6b7c77c}{sym\+\_\+t} \hyperlink{symbolic_8h_a51d47153d7323b2941308b506bd90578}{sym\+\_\+new\+\_\+name} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em New symbolic object whose name is set to name. \end{DoxyCompactList}\item 
+\hyperlink{symbolic_8h_a32ce0f63fa539078e25332dae6b7c77c}{sym\+\_\+t} \hyperlink{symbolic_8h_a78aa047f421c2d8ab5fab3c72d123d1b}{string\+\_\+to\+\_\+sym} (size\+\_\+t src\+\_\+str\+\_\+len, char const $\ast$src\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Create symbol from a string. \end{DoxyCompactList}\item 
+void \hyperlink{symbolic_8h_a6a546d8b16eb1a91b309869b5d37cfc6}{sym\+\_\+to\+\_\+string} (char $\ast$dst\+\_\+str, \hyperlink{symbolic_8h_a32ce0f63fa539078e25332dae6b7c77c}{sym\+\_\+t} src\+\_\+sym)
+\begin{DoxyCompactList}\small\item\em Generate a string from a sym\+\_\+t. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+May 3, 2014 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Craig Hesling
+\end{DoxyAuthor}
+A light structure that is mostly public access.
+
+The point of the sym structure is to create a string based reference to an object without being directly connected to the object. This allows for 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{symbolic_8h_aeb7545cf4c9c6df72954b9409a00a885}{\index{symbolic.\+h@{symbolic.\+h}!S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+Z\+E@{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+Z\+E}}
+\index{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+Z\+E@{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+Z\+E}!symbolic.\+h@{symbolic.\+h}}
+\subsubsection[{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+Z\+E~10}}\label{symbolic_8h_aeb7545cf4c9c6df72954b9409a00a885}
+\hypertarget{symbolic_8h_a171adf6d50315c5e3af7aaaef3bd90ce}{\index{symbolic.\+h@{symbolic.\+h}!S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+P\+\_\+\+S\+T\+R\+\_\+\+S\+I\+Z\+E@{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+P\+\_\+\+S\+T\+R\+\_\+\+S\+I\+Z\+E}}
+\index{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+P\+\_\+\+S\+T\+R\+\_\+\+S\+I\+Z\+E@{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+P\+\_\+\+S\+T\+R\+\_\+\+S\+I\+Z\+E}!symbolic.\+h@{symbolic.\+h}}
+\subsubsection[{S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+P\+\_\+\+S\+T\+R\+\_\+\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Y\+M\+B\+O\+L\+I\+C\+\_\+\+P\+\_\+\+S\+T\+R\+\_\+\+S\+I\+Z\+E~16}}\label{symbolic_8h_a171adf6d50315c5e3af7aaaef3bd90ce}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{symbolic_8h_a32ce0f63fa539078e25332dae6b7c77c}{\index{symbolic.\+h@{symbolic.\+h}!sym\+\_\+t@{sym\+\_\+t}}
+\index{sym\+\_\+t@{sym\+\_\+t}!symbolic.\+h@{symbolic.\+h}}
+\subsubsection[{sym\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf sym} {\bf sym\+\_\+t}}}\label{symbolic_8h_a32ce0f63fa539078e25332dae6b7c77c}
+
+
+\subsection{Function Documentation}
+\hypertarget{symbolic_8h_a78aa047f421c2d8ab5fab3c72d123d1b}{\index{symbolic.\+h@{symbolic.\+h}!string\+\_\+to\+\_\+sym@{string\+\_\+to\+\_\+sym}}
+\index{string\+\_\+to\+\_\+sym@{string\+\_\+to\+\_\+sym}!symbolic.\+h@{symbolic.\+h}}
+\subsubsection[{string\+\_\+to\+\_\+sym}]{\setlength{\rightskip}{0pt plus 5cm}{\bf sym\+\_\+t} string\+\_\+to\+\_\+sym (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{src\+\_\+str\+\_\+len, }
+\item[{char const $\ast$}]{src\+\_\+str}
+\end{DoxyParamCaption}
+)}}\label{symbolic_8h_a78aa047f421c2d8ab5fab3c72d123d1b}
+
+
+Create symbol from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src\+\_\+str\+\_\+len} & The length of the actual buffer (not the number size). \\
+\hline
+{\em src\+\_\+str} & The source string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The symbol in the source string. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Must have first char be digit 
+
+Currently we only do Long Ints 
+\end{DoxyNote}
+$<$ Used to explore the presence of a symbol parameter 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{symbolic_8h_a78aa047f421c2d8ab5fab3c72d123d1b_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{symbolic_8h_a51d47153d7323b2941308b506bd90578}{\index{symbolic.\+h@{symbolic.\+h}!sym\+\_\+new\+\_\+name@{sym\+\_\+new\+\_\+name}}
+\index{sym\+\_\+new\+\_\+name@{sym\+\_\+new\+\_\+name}!symbolic.\+h@{symbolic.\+h}}
+\subsubsection[{sym\+\_\+new\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf sym\+\_\+t} sym\+\_\+new\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{symbolic_8h_a51d47153d7323b2941308b506bd90578}
+
+
+New symbolic object whose name is set to name. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000005}{Todo}]Should probably check that the name contains valid chars (printable) \end{DoxyRefDesc}
+\hypertarget{symbolic_8h_a6a546d8b16eb1a91b309869b5d37cfc6}{\index{symbolic.\+h@{symbolic.\+h}!sym\+\_\+to\+\_\+string@{sym\+\_\+to\+\_\+string}}
+\index{sym\+\_\+to\+\_\+string@{sym\+\_\+to\+\_\+string}!symbolic.\+h@{symbolic.\+h}}
+\subsubsection[{sym\+\_\+to\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}void sym\+\_\+to\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dst\+\_\+str, }
+\item[{{\bf sym\+\_\+t}}]{src\+\_\+sym}
+\end{DoxyParamCaption}
+)}}\label{symbolic_8h_a6a546d8b16eb1a91b309869b5d37cfc6}
+
+
+Generate a string from a sym\+\_\+t. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dst\+\_\+str} & String to write to. \\
+\hline
+{\em src\+\_\+sym} & Symbolic type to read from. \\
+\hline
+\end{DoxyParams}
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{symbolic_8h_a6a546d8b16eb1a91b309869b5d37cfc6_cgraph}
+\end{center}
+\end{figure}
+
+

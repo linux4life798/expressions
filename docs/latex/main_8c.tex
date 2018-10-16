@@ -1,0 +1,256 @@
+\hypertarget{main_8c}{\section{main.\+c File Reference}
+\label{main_8c}\index{main.\+c@{main.\+c}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$assert.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}errors.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}workspace.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}expression.\+h\char`\"{}}\\*
+Include dependency graph for main.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{main_8c_a7b3b25cba33b07c303f3060fe41887f6}{B\+L\+A\+C\+K}~30
+\item 
+\#define \hyperlink{main_8c_a8d23feea868a983c8c2b661e1e16972f}{R\+E\+D}~31
+\item 
+\#define \hyperlink{main_8c_acfbc006ea433ad708fdee3e82996e721}{G\+R\+E\+E\+N}~32
+\item 
+\#define \hyperlink{main_8c_abf681265909adf3d3e8116c93c0ba179}{Y\+E\+L\+L\+O\+W}~33
+\item 
+\#define \hyperlink{main_8c_a79d10e672abb49ad63eeaa8aaef57c38}{B\+L\+U\+E}~34
+\item 
+\#define \hyperlink{main_8c_a0bb0b009e7a7390473ace4d98bd843c0}{P\+U\+R\+P\+L\+E}~35
+\item 
+\#define \hyperlink{main_8c_a03e7881ce42823bcd8c3e798e03e7507}{T\+E\+A\+L}~36
+\item 
+\#define \hyperlink{main_8c_adce122f566c88a1eceeb79a635afa964}{G\+R\+E\+Y}~37
+\item 
+\#define \hyperlink{main_8c_a87b537f5fa5c109d3c05c13d6b18f382}{W\+H\+I\+T\+E}~38
+\item 
+\#define \hyperlink{main_8c_a7b74f5293ac251b336817f016f37ef54}{x\+C\+O\+L\+O\+R}(color, str)~\char`\"{}\textbackslash{}033\mbox{[}\char`\"{}\#color\char`\"{}m\char`\"{}str\char`\"{}\textbackslash{}033\mbox{[}m\char`\"{}
+\item 
+\#define \hyperlink{main_8c_afcb295f230ec87303e40ae53267dc81f}{C\+O\+L\+O\+R}(color, str)~\hyperlink{main_8c_a7b74f5293ac251b336817f016f37ef54}{x\+C\+O\+L\+O\+R}(color, \#str)
+\item 
+\#define \hyperlink{main_8c_a63b91eaa0a70d50671e305c4f1603b53}{E\+X\+P\+E\+C\+T}(exp)~\hyperlink{main_8c_afcb295f230ec87303e40ae53267dc81f}{C\+O\+L\+O\+R}(\hyperlink{main_8c_acfbc006ea433ad708fdee3e82996e721}{G\+R\+E\+E\+N}, exp)
+\item 
+\#define \hyperlink{main_8c_ab6b4f9167f1d2de786d796d82f941454}{R\+E\+S\+U\+L\+T}(res)~\hyperlink{main_8c_afcb295f230ec87303e40ae53267dc81f}{C\+O\+L\+O\+R}(\hyperlink{main_8c_a0bb0b009e7a7390473ace4d98bd843c0}{P\+U\+R\+P\+L\+E}, res)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_ad7a5fe9ac7cb34a8455d013cc154283b}{rtests} (void)
+\begin{DoxyCompactList}\small\item\em Random Tests. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a2b5008f0c056e4e83b3ead2c95e50297}{test0} (void)
+\begin{DoxyCompactList}\small\item\em Tests \hyperlink{expression__lite_8h_aca3bb6ea526afbf4f238a0877fe3e131}{expression\+\_\+to\+\_\+string} and then \hyperlink{expression__lite_8h_a70f3326a088855f6916f04baf27feed3}{expression\+\_\+evaluate} functions. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a299e410e6033d409446bd27bd4fb5b90}{test1} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Tests \hyperlink{expression__lite_8h_a63988c00ace0261c4896f132f5f86fda}{string\+\_\+to\+\_\+expression} on the string argument and then tests \hyperlink{expression__lite_8h_aca3bb6ea526afbf4f238a0877fe3e131}{expression\+\_\+to\+\_\+string} on it's output. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+Apr 6, 2014 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Craig Hesling 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{main_8c_a7b3b25cba33b07c303f3060fe41887f6}{\index{main.\+c@{main.\+c}!B\+L\+A\+C\+K@{B\+L\+A\+C\+K}}
+\index{B\+L\+A\+C\+K@{B\+L\+A\+C\+K}!main.\+c@{main.\+c}}
+\subsubsection[{B\+L\+A\+C\+K}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+L\+A\+C\+K~30}}\label{main_8c_a7b3b25cba33b07c303f3060fe41887f6}
+\hypertarget{main_8c_a79d10e672abb49ad63eeaa8aaef57c38}{\index{main.\+c@{main.\+c}!B\+L\+U\+E@{B\+L\+U\+E}}
+\index{B\+L\+U\+E@{B\+L\+U\+E}!main.\+c@{main.\+c}}
+\subsubsection[{B\+L\+U\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+L\+U\+E~34}}\label{main_8c_a79d10e672abb49ad63eeaa8aaef57c38}
+\hypertarget{main_8c_afcb295f230ec87303e40ae53267dc81f}{\index{main.\+c@{main.\+c}!C\+O\+L\+O\+R@{C\+O\+L\+O\+R}}
+\index{C\+O\+L\+O\+R@{C\+O\+L\+O\+R}!main.\+c@{main.\+c}}
+\subsubsection[{C\+O\+L\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+L\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{color, }
+\item[{}]{str}
+\end{DoxyParamCaption}
+)~{\bf x\+C\+O\+L\+O\+R}(color, \#str)}}\label{main_8c_afcb295f230ec87303e40ae53267dc81f}
+\hypertarget{main_8c_a63b91eaa0a70d50671e305c4f1603b53}{\index{main.\+c@{main.\+c}!E\+X\+P\+E\+C\+T@{E\+X\+P\+E\+C\+T}}
+\index{E\+X\+P\+E\+C\+T@{E\+X\+P\+E\+C\+T}!main.\+c@{main.\+c}}
+\subsubsection[{E\+X\+P\+E\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+X\+P\+E\+C\+T(
+\begin{DoxyParamCaption}
+\item[{}]{exp}
+\end{DoxyParamCaption}
+)~{\bf C\+O\+L\+O\+R}({\bf G\+R\+E\+E\+N}, exp)}}\label{main_8c_a63b91eaa0a70d50671e305c4f1603b53}
+\hypertarget{main_8c_acfbc006ea433ad708fdee3e82996e721}{\index{main.\+c@{main.\+c}!G\+R\+E\+E\+N@{G\+R\+E\+E\+N}}
+\index{G\+R\+E\+E\+N@{G\+R\+E\+E\+N}!main.\+c@{main.\+c}}
+\subsubsection[{G\+R\+E\+E\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+R\+E\+E\+N~32}}\label{main_8c_acfbc006ea433ad708fdee3e82996e721}
+\hypertarget{main_8c_adce122f566c88a1eceeb79a635afa964}{\index{main.\+c@{main.\+c}!G\+R\+E\+Y@{G\+R\+E\+Y}}
+\index{G\+R\+E\+Y@{G\+R\+E\+Y}!main.\+c@{main.\+c}}
+\subsubsection[{G\+R\+E\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+R\+E\+Y~37}}\label{main_8c_adce122f566c88a1eceeb79a635afa964}
+\hypertarget{main_8c_a0bb0b009e7a7390473ace4d98bd843c0}{\index{main.\+c@{main.\+c}!P\+U\+R\+P\+L\+E@{P\+U\+R\+P\+L\+E}}
+\index{P\+U\+R\+P\+L\+E@{P\+U\+R\+P\+L\+E}!main.\+c@{main.\+c}}
+\subsubsection[{P\+U\+R\+P\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+U\+R\+P\+L\+E~35}}\label{main_8c_a0bb0b009e7a7390473ace4d98bd843c0}
+\hypertarget{main_8c_a8d23feea868a983c8c2b661e1e16972f}{\index{main.\+c@{main.\+c}!R\+E\+D@{R\+E\+D}}
+\index{R\+E\+D@{R\+E\+D}!main.\+c@{main.\+c}}
+\subsubsection[{R\+E\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+D~31}}\label{main_8c_a8d23feea868a983c8c2b661e1e16972f}
+\hypertarget{main_8c_ab6b4f9167f1d2de786d796d82f941454}{\index{main.\+c@{main.\+c}!R\+E\+S\+U\+L\+T@{R\+E\+S\+U\+L\+T}}
+\index{R\+E\+S\+U\+L\+T@{R\+E\+S\+U\+L\+T}!main.\+c@{main.\+c}}
+\subsubsection[{R\+E\+S\+U\+L\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+S\+U\+L\+T(
+\begin{DoxyParamCaption}
+\item[{}]{res}
+\end{DoxyParamCaption}
+)~{\bf C\+O\+L\+O\+R}({\bf P\+U\+R\+P\+L\+E}, res)}}\label{main_8c_ab6b4f9167f1d2de786d796d82f941454}
+\hypertarget{main_8c_a03e7881ce42823bcd8c3e798e03e7507}{\index{main.\+c@{main.\+c}!T\+E\+A\+L@{T\+E\+A\+L}}
+\index{T\+E\+A\+L@{T\+E\+A\+L}!main.\+c@{main.\+c}}
+\subsubsection[{T\+E\+A\+L}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+E\+A\+L~36}}\label{main_8c_a03e7881ce42823bcd8c3e798e03e7507}
+\hypertarget{main_8c_a87b537f5fa5c109d3c05c13d6b18f382}{\index{main.\+c@{main.\+c}!W\+H\+I\+T\+E@{W\+H\+I\+T\+E}}
+\index{W\+H\+I\+T\+E@{W\+H\+I\+T\+E}!main.\+c@{main.\+c}}
+\subsubsection[{W\+H\+I\+T\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+H\+I\+T\+E~38}}\label{main_8c_a87b537f5fa5c109d3c05c13d6b18f382}
+\hypertarget{main_8c_a7b74f5293ac251b336817f016f37ef54}{\index{main.\+c@{main.\+c}!x\+C\+O\+L\+O\+R@{x\+C\+O\+L\+O\+R}}
+\index{x\+C\+O\+L\+O\+R@{x\+C\+O\+L\+O\+R}!main.\+c@{main.\+c}}
+\subsubsection[{x\+C\+O\+L\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define x\+C\+O\+L\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{color, }
+\item[{}]{str}
+\end{DoxyParamCaption}
+)~\char`\"{}\textbackslash{}033\mbox{[}\char`\"{}\#color\char`\"{}m\char`\"{}str\char`\"{}\textbackslash{}033\mbox{[}m\char`\"{}}}\label{main_8c_a7b74f5293ac251b336817f016f37ef54}
+\hypertarget{main_8c_abf681265909adf3d3e8116c93c0ba179}{\index{main.\+c@{main.\+c}!Y\+E\+L\+L\+O\+W@{Y\+E\+L\+L\+O\+W}}
+\index{Y\+E\+L\+L\+O\+W@{Y\+E\+L\+L\+O\+W}!main.\+c@{main.\+c}}
+\subsubsection[{Y\+E\+L\+L\+O\+W}]{\setlength{\rightskip}{0pt plus 5cm}\#define Y\+E\+L\+L\+O\+W~33}}\label{main_8c_abf681265909adf3d3e8116c93c0ba179}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_ad7a5fe9ac7cb34a8455d013cc154283b}{\index{main.\+c@{main.\+c}!rtests@{rtests}}
+\index{rtests@{rtests}!main.\+c@{main.\+c}}
+\subsubsection[{rtests}]{\setlength{\rightskip}{0pt plus 5cm}void rtests (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_ad7a5fe9ac7cb34a8455d013cc154283b}
+
+
+Random Tests. 
+
+Tests the atol() system function. Execute atol(). \hypertarget{main_8c_a2b5008f0c056e4e83b3ead2c95e50297}{\index{main.\+c@{main.\+c}!test0@{test0}}
+\index{test0@{test0}!main.\+c@{main.\+c}}
+\subsubsection[{test0}]{\setlength{\rightskip}{0pt plus 5cm}void test0 (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a2b5008f0c056e4e83b3ead2c95e50297}
+
+
+Tests \hyperlink{expression__lite_8h_aca3bb6ea526afbf4f238a0877fe3e131}{expression\+\_\+to\+\_\+string} and then \hyperlink{expression__lite_8h_a70f3326a088855f6916f04baf27feed3}{expression\+\_\+evaluate} functions. 
+
+It tests expression\+\_\+to\+\_\+string and expression\+\_\+evaluate on a manually created expression. The expression is ( (10 + 20) + 128 ) where e4 is the outer most root node and e3 is inner parent node of e0 and e1.
+
+\begin{center}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_1}}
+\end{DoxyImageNoCaption}
+\end{center}
+ Call \hyperlink{types_8h_ab4456b47af2527b772ee8db5a367c66b}{value\+\_\+new\+\_\+lint} for e0 e1 and e2. 
+\begin{DoxyCode}
+puts(\textcolor{stringliteral}{"## Try value\_new\_lint()"});
+e0.data.val = \hyperlink{types_8c_ab4456b47af2527b772ee8db5a367c66b}{value\_new\_lint}(10);
+e1.data.val = \hyperlink{types_8c_ab4456b47af2527b772ee8db5a367c66b}{value\_new\_lint}(20);
+e2.data.val = \hyperlink{types_8c_ab4456b47af2527b772ee8db5a367c66b}{value\_new\_lint}(128);
+\end{DoxyCode}
+
+
+Call \hyperlink{expression__lite_8h_aca3bb6ea526afbf4f238a0877fe3e131}{expression\+\_\+to\+\_\+string} on e4. 
+\begin{DoxyCode}
+puts(\textcolor{stringliteral}{"## Try expression\_to\_string()"});
+\textcolor{comment}{// get string of root node e4}
+\hyperlink{expression_8c_aca3bb6ea526afbf4f238a0877fe3e131}{expression\_to\_string}(buf, &e4);
+puts(\textcolor{stringliteral}{"## Show resultant string"});
+puts(\textcolor{stringliteral}{"Expect: "}\hyperlink{main_8c_a63b91eaa0a70d50671e305c4f1603b53}{EXPECT}(\textcolor{stringliteral}{"((10 + 20) + 128)"}));
+printf(\textcolor{stringliteral}{"Expression String: "}\hyperlink{main_8c_ab6b4f9167f1d2de786d796d82f941454}{RESULT}(\textcolor{stringliteral}{"%s"})\textcolor{stringliteral}{"\(\backslash\)n"}, buf);
+\end{DoxyCode}
+
+
+Call \hyperlink{expression__lite_8h_a70f3326a088855f6916f04baf27feed3}{expression\+\_\+evaluate} on e4. 
+\begin{DoxyCode}
+puts(\textcolor{stringliteral}{"## Try expression\_evaluate()"});
+result = \hyperlink{expression_8c_a70f3326a088855f6916f04baf27feed3}{expression\_evaluate}(&e4);
+assert(result.type == \hyperlink{types_8h_a2763ddd86ab6e5f5f4c34c0561d4cd39a6910734ada9098e9409f17682d47c6bc}{VAL\_LINT});
+puts(\textcolor{stringliteral}{"## Show resultant values"});
+puts(\textcolor{stringliteral}{"Expect: "}\hyperlink{main_8c_a63b91eaa0a70d50671e305c4f1603b53}{EXPECT}(\textcolor{stringliteral}{"((10 + 20) + 128) = 158"}));
+printf(\textcolor{stringliteral}{"Expression: "}\hyperlink{main_8c_ab6b4f9167f1d2de786d796d82f941454}{RESULT}(\textcolor{stringliteral}{"%s = %ld"})\textcolor{stringliteral}{"\(\backslash\)n"}, buf, result.data.lint);
+\end{DoxyCode}
+ 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a2b5008f0c056e4e83b3ead2c95e50297_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{main_8c_a299e410e6033d409446bd27bd4fb5b90}{\index{main.\+c@{main.\+c}!test1@{test1}}
+\index{test1@{test1}!main.\+c@{main.\+c}}
+\subsubsection[{test1}]{\setlength{\rightskip}{0pt plus 5cm}void test1 (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{main_8c_a299e410e6033d409446bd27bd4fb5b90}
+
+
+Tests \hyperlink{expression__lite_8h_a63988c00ace0261c4896f132f5f86fda}{string\+\_\+to\+\_\+expression} on the string argument and then tests \hyperlink{expression__lite_8h_aca3bb6ea526afbf4f238a0877fe3e131}{expression\+\_\+to\+\_\+string} on it's output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The expression string to use. \\
+\hline
+\end{DoxyParams}
+Call \hyperlink{expression__lite_8h_a63988c00ace0261c4896f132f5f86fda}{string\+\_\+to\+\_\+expression} on str 
+\begin{DoxyCode}
+e1 = \hyperlink{expression_8c_a63988c00ace0261c4896f132f5f86fda}{string\_to\_expression} (strlen(str), str);
+\end{DoxyCode}
+
+
+Call \hyperlink{expression__lite_8h_aca3bb6ea526afbf4f238a0877fe3e131}{expression\+\_\+to\+\_\+string} on result, e1 
+\begin{DoxyCode}
+\hyperlink{expression_8c_aca3bb6ea526afbf4f238a0877fe3e131}{expression\_to\_string} (buf,  e1);
+\end{DoxyCode}
+ 
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a299e410e6033d409446bd27bd4fb5b90_cgraph}
+\end{center}
+\end{figure}
+
+

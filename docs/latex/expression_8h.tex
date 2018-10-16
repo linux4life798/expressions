@@ -1,0 +1,281 @@
+\hypertarget{expression_8h}{\section{expression.\+h File Reference}
+\label{expression_8h}\index{expression.\+h@{expression.\+h}}
+}
+
+
+A compact math expression engine.  
+
+
+{\ttfamily \#include $<$stddef.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}symbolic.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}expression\+\_\+lite.\+h\char`\"{}}\\*
+Include dependency graph for expression.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{expression_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structexpression__data__tree}{expression\+\_\+data\+\_\+tree}
+\begin{DoxyCompactList}\small\item\em Expression data container for the expanded expression. \end{DoxyCompactList}\item 
+union \hyperlink{unionexpression__data}{expression\+\_\+data}
+\begin{DoxyCompactList}\small\item\em Expression data container. \end{DoxyCompactList}\item 
+struct \hyperlink{structexpression}{expression}
+\begin{DoxyCompactList}\small\item\em The stored representation of mathematical expressions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{expression_8h_a153d42f7623b90824d99a93510e80065}{E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E}~256
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef char \hyperlink{expression_8h_a3a229f715c187e4c6aede8af4779a858}{exp\+\_\+buf} \mbox{[}\hyperlink{expression_8h_a153d42f7623b90824d99a93510e80065}{E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E}\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{expression_8h_a5a6601c4e142145f0e87051cb21ece0f}{expression\+\_\+type} \{ \hyperlink{expression_8h_a5a6601c4e142145f0e87051cb21ece0fae6147a045f91d12b13e5b1be980f0c14}{E\+X\+P\+\_\+\+V\+A\+L\+U\+E}, 
+\hyperlink{expression_8h_a5a6601c4e142145f0e87051cb21ece0fa85110f7c9b08f397c34d0a1b8111ef1b}{E\+X\+P\+\_\+\+T\+R\+E\+E}, 
+\hyperlink{expression_8h_a5a6601c4e142145f0e87051cb21ece0fa7d51b8667dc755088ff87f371e427d96}{E\+X\+P\+\_\+\+S\+Y\+M\+B\+O\+L\+I\+C}
+ \}
+\begin{DoxyCompactList}\small\item\em Expression types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} \hyperlink{expression_8h_a513e1cb7ae9dbcef50307f2c13e00dd9}{expression\+\_\+new} (void)
+\begin{DoxyCompactList}\small\item\em New blank expression. \end{DoxyCompactList}\item 
+\hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} \hyperlink{expression_8h_a7c44bf0c0e78a10270eeec18a89eb340}{expression\+\_\+new\+\_\+value} (\hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t} val)
+\item 
+\hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} \hyperlink{expression_8h_affb6adb350cc9126e06af303607ca812}{expression\+\_\+new\+\_\+tree} (char op, \hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} left, \hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} right)
+\item 
+\hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} \hyperlink{expression_8h_a02b7142f5701d82971d1f21ec20772be}{expression\+\_\+new\+\_\+sym} (\hyperlink{symbolic_8h_a32ce0f63fa539078e25332dae6b7c77c}{sym\+\_\+t} \hyperlink{structsym}{sym})
+\item 
+void \hyperlink{expression_8h_a6f1cc930ee50ba61adf466fbdf4b1fb2}{expression\+\_\+free} (\hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} exp)
+\begin{DoxyCompactList}\small\item\em Free an expression. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_ae4d4f561b975159d5852cb2c30bf20ef}{value\+\_\+t} \hyperlink{expression_8h_a70f3326a088855f6916f04baf27feed3}{expression\+\_\+evaluate} (\hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} exp)
+\item 
+void \hyperlink{expression_8h_aca3bb6ea526afbf4f238a0877fe3e131}{expression\+\_\+to\+\_\+string} (char $\ast$dst\+\_\+str, \hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} src\+\_\+exp)
+\begin{DoxyCompactList}\small\item\em Expression to String. \end{DoxyCompactList}\item 
+\hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t} \hyperlink{expression_8h_a63988c00ace0261c4896f132f5f86fda}{string\+\_\+to\+\_\+expression} (size\+\_\+t str\+\_\+len, char const $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert String to an Expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A compact math expression engine. 
+
+\begin{DoxyDate}{Date}
+Apr 6, 2014 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Craig Hesling 
+\end{DoxyAuthor}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{expression_8h_a153d42f7623b90824d99a93510e80065}{\index{expression.\+h@{expression.\+h}!E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E@{E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E}}
+\index{E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E@{E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E}!expression.\+h@{expression.\+h}}
+\subsubsection[{E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E~256}}\label{expression_8h_a153d42f7623b90824d99a93510e80065}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{expression_8h_a3a229f715c187e4c6aede8af4779a858}{\index{expression.\+h@{expression.\+h}!exp\+\_\+buf@{exp\+\_\+buf}}
+\index{exp\+\_\+buf@{exp\+\_\+buf}!expression.\+h@{expression.\+h}}
+\subsubsection[{exp\+\_\+buf}]{\setlength{\rightskip}{0pt plus 5cm}typedef char exp\+\_\+buf\mbox{[}{\bf E\+X\+P\+\_\+\+B\+U\+F\+\_\+\+S\+I\+Z\+E}\mbox{]}}}\label{expression_8h_a3a229f715c187e4c6aede8af4779a858}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{expression_8h_a5a6601c4e142145f0e87051cb21ece0f}{\index{expression.\+h@{expression.\+h}!expression\+\_\+type@{expression\+\_\+type}}
+\index{expression\+\_\+type@{expression\+\_\+type}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf expression\+\_\+type}}}\label{expression_8h_a5a6601c4e142145f0e87051cb21ece0f}
+
+
+Expression types. 
+
+This is an enumeration of \hyperlink{expression__lite_8h_ac198bce62637e5d742da0218d544a7ac}{expression\+\_\+t}'s types. Specific types correspond to specific data containers in \hyperlink{unionexpression__data}{expression\+\_\+data}. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{E\+X\+P\+\_\+\+V\+A\+L\+U\+E@{E\+X\+P\+\_\+\+V\+A\+L\+U\+E}!expression.\+h@{expression.\+h}}\index{expression.\+h@{expression.\+h}!E\+X\+P\+\_\+\+V\+A\+L\+U\+E@{E\+X\+P\+\_\+\+V\+A\+L\+U\+E}}\item[{\em 
+\hypertarget{expression_8h_a5a6601c4e142145f0e87051cb21ece0fae6147a045f91d12b13e5b1be980f0c14}{E\+X\+P\+\_\+\+V\+A\+L\+U\+E}\label{expression_8h_a5a6601c4e142145f0e87051cb21ece0fae6147a045f91d12b13e5b1be980f0c14}
+}]Contains a simple numeric values and undefines. \index{E\+X\+P\+\_\+\+T\+R\+E\+E@{E\+X\+P\+\_\+\+T\+R\+E\+E}!expression.\+h@{expression.\+h}}\index{expression.\+h@{expression.\+h}!E\+X\+P\+\_\+\+T\+R\+E\+E@{E\+X\+P\+\_\+\+T\+R\+E\+E}}\item[{\em 
+\hypertarget{expression_8h_a5a6601c4e142145f0e87051cb21ece0fa85110f7c9b08f397c34d0a1b8111ef1b}{E\+X\+P\+\_\+\+T\+R\+E\+E}\label{expression_8h_a5a6601c4e142145f0e87051cb21ece0fa85110f7c9b08f397c34d0a1b8111ef1b}
+}]An expression over an operation and sub-\/expression. \index{E\+X\+P\+\_\+\+S\+Y\+M\+B\+O\+L\+I\+C@{E\+X\+P\+\_\+\+S\+Y\+M\+B\+O\+L\+I\+C}!expression.\+h@{expression.\+h}}\index{expression.\+h@{expression.\+h}!E\+X\+P\+\_\+\+S\+Y\+M\+B\+O\+L\+I\+C@{E\+X\+P\+\_\+\+S\+Y\+M\+B\+O\+L\+I\+C}}\item[{\em 
+\hypertarget{expression_8h_a5a6601c4e142145f0e87051cb21ece0fa7d51b8667dc755088ff87f371e427d96}{E\+X\+P\+\_\+\+S\+Y\+M\+B\+O\+L\+I\+C}\label{expression_8h_a5a6601c4e142145f0e87051cb21ece0fa7d51b8667dc755088ff87f371e427d96}
+}]Symbolic named references. \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{expression_8h_a70f3326a088855f6916f04baf27feed3}{\index{expression.\+h@{expression.\+h}!expression\+\_\+evaluate@{expression\+\_\+evaluate}}
+\index{expression\+\_\+evaluate@{expression\+\_\+evaluate}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+evaluate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf value\+\_\+t} expression\+\_\+evaluate (
+\begin{DoxyParamCaption}
+\item[{{\bf expression\+\_\+t}}]{exp}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_a70f3326a088855f6916f04baf27feed3}
+\hypertarget{expression_8h_a6f1cc930ee50ba61adf466fbdf4b1fb2}{\index{expression.\+h@{expression.\+h}!expression\+\_\+free@{expression\+\_\+free}}
+\index{expression\+\_\+free@{expression\+\_\+free}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+free}]{\setlength{\rightskip}{0pt plus 5cm}void expression\+\_\+free (
+\begin{DoxyParamCaption}
+\item[{{\bf expression\+\_\+t}}]{exp}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_a6f1cc930ee50ba61adf466fbdf4b1fb2}
+
+
+Free an expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em exp} & The expression to free \\
+\hline
+\end{DoxyParams}
+\hypertarget{expression_8h_a513e1cb7ae9dbcef50307f2c13e00dd9}{\index{expression.\+h@{expression.\+h}!expression\+\_\+new@{expression\+\_\+new}}
+\index{expression\+\_\+new@{expression\+\_\+new}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+new}]{\setlength{\rightskip}{0pt plus 5cm}{\bf expression\+\_\+t} expression\+\_\+new (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_a513e1cb7ae9dbcef50307f2c13e00dd9}
+
+
+New blank expression. 
+
+This function creates the most basic empty expression. \begin{DoxyReturn}{Returns}
+A new empty expression 
+\end{DoxyReturn}
+\hypertarget{expression_8h_a02b7142f5701d82971d1f21ec20772be}{\index{expression.\+h@{expression.\+h}!expression\+\_\+new\+\_\+sym@{expression\+\_\+new\+\_\+sym}}
+\index{expression\+\_\+new\+\_\+sym@{expression\+\_\+new\+\_\+sym}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+new\+\_\+sym}]{\setlength{\rightskip}{0pt plus 5cm}{\bf expression\+\_\+t} expression\+\_\+new\+\_\+sym (
+\begin{DoxyParamCaption}
+\item[{{\bf sym\+\_\+t}}]{sym}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_a02b7142f5701d82971d1f21ec20772be}
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{expression_8h_a02b7142f5701d82971d1f21ec20772be_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{expression_8h_affb6adb350cc9126e06af303607ca812}{\index{expression.\+h@{expression.\+h}!expression\+\_\+new\+\_\+tree@{expression\+\_\+new\+\_\+tree}}
+\index{expression\+\_\+new\+\_\+tree@{expression\+\_\+new\+\_\+tree}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+new\+\_\+tree}]{\setlength{\rightskip}{0pt plus 5cm}{\bf expression\+\_\+t} expression\+\_\+new\+\_\+tree (
+\begin{DoxyParamCaption}
+\item[{char}]{op, }
+\item[{{\bf expression\+\_\+t}}]{left, }
+\item[{{\bf expression\+\_\+t}}]{right}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_affb6adb350cc9126e06af303607ca812}
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{expression_8h_affb6adb350cc9126e06af303607ca812_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{expression_8h_a7c44bf0c0e78a10270eeec18a89eb340}{\index{expression.\+h@{expression.\+h}!expression\+\_\+new\+\_\+value@{expression\+\_\+new\+\_\+value}}
+\index{expression\+\_\+new\+\_\+value@{expression\+\_\+new\+\_\+value}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+new\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}{\bf expression\+\_\+t} expression\+\_\+new\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{{\bf value\+\_\+t}}]{val}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_a7c44bf0c0e78a10270eeec18a89eb340}
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{expression_8h_a7c44bf0c0e78a10270eeec18a89eb340_cgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{expression_8h_aca3bb6ea526afbf4f238a0877fe3e131}{\index{expression.\+h@{expression.\+h}!expression\+\_\+to\+\_\+string@{expression\+\_\+to\+\_\+string}}
+\index{expression\+\_\+to\+\_\+string@{expression\+\_\+to\+\_\+string}!expression.\+h@{expression.\+h}}
+\subsubsection[{expression\+\_\+to\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}void expression\+\_\+to\+\_\+string (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{dst\+\_\+str, }
+\item[{{\bf expression\+\_\+t}}]{src\+\_\+exp}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_aca3bb6ea526afbf4f238a0877fe3e131}
+
+
+Expression to String. 
+
+\hypertarget{expression_8h_a63988c00ace0261c4896f132f5f86fda}{\index{expression.\+h@{expression.\+h}!string\+\_\+to\+\_\+expression@{string\+\_\+to\+\_\+expression}}
+\index{string\+\_\+to\+\_\+expression@{string\+\_\+to\+\_\+expression}!expression.\+h@{expression.\+h}}
+\subsubsection[{string\+\_\+to\+\_\+expression}]{\setlength{\rightskip}{0pt plus 5cm}{\bf expression\+\_\+t} string\+\_\+to\+\_\+expression (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{str\+\_\+len, }
+\item[{char const $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{expression_8h_a63988c00ace0261c4896f132f5f86fda}
+
+
+Convert String to an Expression. 
+
+Parses a string into an expression. \begin{DoxyNote}{Note}
+level was type int -\/ changed to unsigned to temporarily quiet compiler 
+\end{DoxyNote}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000001}{Bug}]Cannot parse negative numbers \begin{DoxyWarning}{Warning}
+Symbols must start with A\+L\+P\+H\+A chars to be properly identified.
+\end{DoxyWarning}
+\end{DoxyRefDesc}
+\hypertarget{expression__lite_8h_parsing_algorithm}{}\subsection{Algorithm}\label{expression__lite_8h_parsing_algorithm}
+\hypertarget{expression__lite_8h_parsing_overview}{}\subsubsection{Parsing Overview}\label{expression__lite_8h_parsing_overview}
+
+\begin{DoxyItemize}
+\item Step 1\+: Recording details about the string while scanning from left to right.
+\item Step 2\+: There are two real cases. The string is a single number (with no operations) or it is two sub-\/expressions joined by an operation.~\newline
+ Cases\+:
+\begin{DoxyItemize}
+\item If it is a simple number, we know how to parse it and create a value expression.
+\item If it is not just a number, we want split the string about the operation at the lowest level. (in practice, we end up finding the one that is farthest left of the lowest level) We then construct a tree expression with the chosen operation and the sub-\/expression results from running the function recursively on each of the sub-\/strings.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+\_\+len} & Length of given string \\
+\hline
+{\em str} & String to parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The expression\+\_\+t representation of the inputed string
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Test}
+\item[\hyperlink{test__test000001}{Test}]Test for negative values \end{DoxyRefDesc}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Allow symbols to be detected when they start with numeric digits also. \hyperlink{symbolic_8h_a78aa047f421c2d8ab5fab3c72d123d1b}{string\+\_\+to\+\_\+sym} is already compatible. \end{DoxyRefDesc}
+
+
+$<$ Store original index
+
+$<$ Used to explore the presence of a symbol parameter
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]Do series of additional syntax checks here. \end{DoxyRefDesc}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]Syntax Check\+: Check that level==0 \end{DoxyRefDesc}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000004}{Todo}]Syntax Check\+: Check that oparen\+\_\+count==cparen\+\_\+count \end{DoxyRefDesc}
+
+
+\begin{DoxyNote}{Note}
+left\+\_\+buf and right\+\_\+buf were changed to use malloc to avoid errors with C90 compilers 
+\end{DoxyNote}
