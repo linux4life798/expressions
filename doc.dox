@@ -3,9 +3,9 @@
  * @date Apr 6, 2014
  *
  * @mainpage General Info Index
- * 
+ *
  * @section intro_sec Introduction
- * 
+ *
  * TODO: Stick introduction here...
  * @subsection expressions Expressions
  *
@@ -42,7 +42,7 @@
  * @enddot
  *
  * @section development Development
- * 
+ *
  * @subsection quick_links Quick Links
  * - Main library interface file for \ref expression.h
  * - Main library implementation file for \ref expression.c
