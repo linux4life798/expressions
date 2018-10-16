@@ -36,8 +36,8 @@
  * node4[label = "<f0> |<f1> 2|<f2> "];
  * "node0":f0 -> "node1":f1;
  * "node0":f2 -> "node2":f1;
- * "node2":f0 -> "node3":f1;
- * "node2":f2 -> "node4":f1;
+ * "node1":f0 -> "node3":f1;
+ * "node1":f2 -> "node4":f1;
  * }
  * @enddot
  *
