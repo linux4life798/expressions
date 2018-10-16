@@ -1,14 +1,14 @@
-\hypertarget{workspace_8c}{\section{workspace.\+c File Reference}
+\hypertarget{workspace_8c}{}\section{workspace.\+c File Reference}
 \label{workspace_8c}\index{workspace.\+c@{workspace.\+c}}
-}
-{\ttfamily \#include $<$string.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}errors.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}workspace.\+h\char`\"{}}\\*
-Include dependency graph for workspace.\+c\+:\nopagebreak
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}errors.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}workspace.\+h\char`\"{}}\newline
+Include dependency graph for workspace.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=286pt]{workspace_8c__incl}
+\includegraphics[width=288pt]{workspace_8c__incl}
 \end{center}
 \end{figure}
 \subsection*{Data Structures}
@@ -19,19 +19,19 @@ struct {\bfseries workspace}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{workspace_8c_aadf355de53cdc42e6a1081916321251f}{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+E\+T}(x)~(W\+S\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} == '\textbackslash{}0')
+\#define \hyperlink{workspace_8c_aadf355de53cdc42e6a1081916321251f}{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+ET}(x)~(WS\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} == \textquotesingle{}\textbackslash{}0\textquotesingle{})
 \item 
-\#define \hyperlink{workspace_8c_a16aaa93198c62a638c59444212f025b8}{W\+S\+\_\+\+U\+N\+S\+E\+T}(x)~W\+S\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} = '\textbackslash{}0'
+\#define \hyperlink{workspace_8c_a16aaa93198c62a638c59444212f025b8}{W\+S\+\_\+\+U\+N\+S\+ET}(x)~WS\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} = \textquotesingle{}\textbackslash{}0\textquotesingle{}
 \item 
-\#define \hyperlink{workspace_8c_a2414aeb7dbcf5153e807c7f7d51e03b0}{W\+S\+\_\+\+L\+A\+S\+T}~ws\+\_\+last
+\#define \hyperlink{workspace_8c_a2414aeb7dbcf5153e807c7f7d51e03b0}{W\+S\+\_\+\+L\+A\+ST}~ws\+\_\+last
 \item 
-\#define \hyperlink{workspace_8c_a0366a64834fcd82dd98ec57fbd4b1f46}{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+E\+T}~ws\+\_\+last = -\/1
+\#define \hyperlink{workspace_8c_a0366a64834fcd82dd98ec57fbd4b1f46}{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+ET}~ws\+\_\+last = -\/1
 \item 
-\#define \hyperlink{workspace_8c_a5bef065d3c4004e76f4226d41111c579}{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+E\+T}(x)~ws\+\_\+last = ((x) $>$ ws\+\_\+last) ?(x)\+:ws\+\_\+last
+\#define \hyperlink{workspace_8c_a5bef065d3c4004e76f4226d41111c579}{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+ET}(x)~ws\+\_\+last = ((x) $>$ ws\+\_\+last) ?(x)\+:ws\+\_\+last
 \item 
-\#define \hyperlink{workspace_8c_a273fa3245073307381a1ea8f71bf5151}{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+E\+T}(x)~ws\+\_\+last = ((x) == ws\+\_\+last)?(ws\+\_\+last-\/1)\+:ws\+\_\+last
+\#define \hyperlink{workspace_8c_a273fa3245073307381a1ea8f71bf5151}{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+ET}(x)~ws\+\_\+last = ((x) == ws\+\_\+last)?(ws\+\_\+last-\/1)\+:ws\+\_\+last
 \item 
-\#define \hyperlink{workspace_8c_aea36ffeb7e99fc5cbabe90b03f29cc02}{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D}~\hyperlink{workspace_8h_aab50c10161a2e913c9bd6c68a301d354}{W\+O\+R\+K\+S\+P\+A\+C\+E\+\_\+\+S\+I\+Z\+E}
+\#define \hyperlink{workspace_8c_aea36ffeb7e99fc5cbabe90b03f29cc02}{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+ND}~\hyperlink{workspace_8h_aab50c10161a2e913c9bd6c68a301d354}{W\+O\+R\+K\+S\+P\+A\+C\+E\+\_\+\+S\+I\+ZE}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -56,62 +56,65 @@ Craig Hesling
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{workspace_8c_aadf355de53cdc42e6a1081916321251f}{\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+E\+T@{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+E\+T}}
-\index{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+E\+T@{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+E\+T}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+E\+T(
-\begin{DoxyParamCaption}
-\item[{}]{x}
-\end{DoxyParamCaption}
-)~(W\+S\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} == '\textbackslash{}0')}}\label{workspace_8c_aadf355de53cdc42e6a1081916321251f}
-\hypertarget{workspace_8c_a2414aeb7dbcf5153e807c7f7d51e03b0}{\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+S\+T@{W\+S\+\_\+\+L\+A\+S\+T}}
-\index{W\+S\+\_\+\+L\+A\+S\+T@{W\+S\+\_\+\+L\+A\+S\+T}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{W\+S\+\_\+\+L\+A\+S\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+S\+\_\+\+L\+A\+S\+T~ws\+\_\+last}}\label{workspace_8c_a2414aeb7dbcf5153e807c7f7d51e03b0}
-\hypertarget{workspace_8c_a0366a64834fcd82dd98ec57fbd4b1f46}{\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+E\+T@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+E\+T}}
-\index{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+E\+T@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+E\+T}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+E\+T~ws\+\_\+last = -\/1}}\label{workspace_8c_a0366a64834fcd82dd98ec57fbd4b1f46}
-\hypertarget{workspace_8c_a5bef065d3c4004e76f4226d41111c579}{\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+E\+T@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+E\+T}}
-\index{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+E\+T@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+E\+T}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+E\+T(
-\begin{DoxyParamCaption}
-\item[{}]{x}
-\end{DoxyParamCaption}
-)~ws\+\_\+last = ((x) $>$ ws\+\_\+last) ?(x)\+:ws\+\_\+last}}\label{workspace_8c_a5bef065d3c4004e76f4226d41111c579}
-\hypertarget{workspace_8c_a273fa3245073307381a1ea8f71bf5151}{\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+E\+T@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+E\+T}}
-\index{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+E\+T@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+E\+T}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+E\+T(
-\begin{DoxyParamCaption}
-\item[{}]{x}
-\end{DoxyParamCaption}
-)~ws\+\_\+last = ((x) == ws\+\_\+last)?(ws\+\_\+last-\/1)\+:ws\+\_\+last}}\label{workspace_8c_a273fa3245073307381a1ea8f71bf5151}
-\hypertarget{workspace_8c_aea36ffeb7e99fc5cbabe90b03f29cc02}{\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D@{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D}}
-\index{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D@{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+N\+D~{\bf W\+O\+R\+K\+S\+P\+A\+C\+E\+\_\+\+S\+I\+Z\+E}}}\label{workspace_8c_aea36ffeb7e99fc5cbabe90b03f29cc02}
-\hypertarget{workspace_8c_a16aaa93198c62a638c59444212f025b8}{\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+U\+N\+S\+E\+T@{W\+S\+\_\+\+U\+N\+S\+E\+T}}
-\index{W\+S\+\_\+\+U\+N\+S\+E\+T@{W\+S\+\_\+\+U\+N\+S\+E\+T}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{W\+S\+\_\+\+U\+N\+S\+E\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+S\+\_\+\+U\+N\+S\+E\+T(
-\begin{DoxyParamCaption}
-\item[{}]{x}
-\end{DoxyParamCaption}
-)~W\+S\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} = '\textbackslash{}0'}}\label{workspace_8c_a16aaa93198c62a638c59444212f025b8}
+\mbox{\Hypertarget{workspace_8c_aadf355de53cdc42e6a1081916321251f}\label{workspace_8c_aadf355de53cdc42e6a1081916321251f}} 
+\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+ET@{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+ET}}
+\index{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+ET@{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+ET}!workspace.\+c@{workspace.\+c}}
+\subsubsection{\texorpdfstring{W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+ET}{WS\_IS\_UNSET}}
+{\footnotesize\ttfamily \#define W\+S\+\_\+\+I\+S\+\_\+\+U\+N\+S\+ET(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(WS\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} == \textquotesingle{}\textbackslash{}0\textquotesingle{})}
+
+\mbox{\Hypertarget{workspace_8c_a2414aeb7dbcf5153e807c7f7d51e03b0}\label{workspace_8c_a2414aeb7dbcf5153e807c7f7d51e03b0}} 
+\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+ST@{W\+S\+\_\+\+L\+A\+ST}}
+\index{W\+S\+\_\+\+L\+A\+ST@{W\+S\+\_\+\+L\+A\+ST}!workspace.\+c@{workspace.\+c}}
+\subsubsection{\texorpdfstring{W\+S\+\_\+\+L\+A\+ST}{WS\_LAST}}
+{\footnotesize\ttfamily \#define W\+S\+\_\+\+L\+A\+ST~ws\+\_\+last}
+
+\mbox{\Hypertarget{workspace_8c_a0366a64834fcd82dd98ec57fbd4b1f46}\label{workspace_8c_a0366a64834fcd82dd98ec57fbd4b1f46}} 
+\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+ET@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+ET}}
+\index{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+ET@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+ET}!workspace.\+c@{workspace.\+c}}
+\subsubsection{\texorpdfstring{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+ET}{WS\_LAST\_RESET}}
+{\footnotesize\ttfamily \#define W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+S\+ET~ws\+\_\+last = -\/1}
+
+\mbox{\Hypertarget{workspace_8c_a5bef065d3c4004e76f4226d41111c579}\label{workspace_8c_a5bef065d3c4004e76f4226d41111c579}} 
+\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+ET@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+ET}}
+\index{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+ET@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+ET}!workspace.\+c@{workspace.\+c}}
+\subsubsection{\texorpdfstring{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+ET}{WS\_LAST\_SET}}
+{\footnotesize\ttfamily \#define W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+S\+ET(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~ws\+\_\+last = ((x) $>$ ws\+\_\+last) ?(x)\+:ws\+\_\+last}
+
+\mbox{\Hypertarget{workspace_8c_a273fa3245073307381a1ea8f71bf5151}\label{workspace_8c_a273fa3245073307381a1ea8f71bf5151}} 
+\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+ET@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+ET}}
+\index{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+ET@{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+ET}!workspace.\+c@{workspace.\+c}}
+\subsubsection{\texorpdfstring{W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+ET}{WS\_LAST\_UNSET}}
+{\footnotesize\ttfamily \#define W\+S\+\_\+\+L\+A\+S\+T\+\_\+\+U\+N\+S\+ET(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~ws\+\_\+last = ((x) == ws\+\_\+last)?(ws\+\_\+last-\/1)\+:ws\+\_\+last}
+
+\mbox{\Hypertarget{workspace_8c_aea36ffeb7e99fc5cbabe90b03f29cc02}\label{workspace_8c_aea36ffeb7e99fc5cbabe90b03f29cc02}} 
+\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+ND@{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+ND}}
+\index{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+ND@{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+ND}!workspace.\+c@{workspace.\+c}}
+\subsubsection{\texorpdfstring{W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+ND}{WS\_NOTFOUND}}
+{\footnotesize\ttfamily \#define W\+S\+\_\+\+N\+O\+T\+F\+O\+U\+ND~\hyperlink{workspace_8h_aab50c10161a2e913c9bd6c68a301d354}{W\+O\+R\+K\+S\+P\+A\+C\+E\+\_\+\+S\+I\+ZE}}
+
+\mbox{\Hypertarget{workspace_8c_a16aaa93198c62a638c59444212f025b8}\label{workspace_8c_a16aaa93198c62a638c59444212f025b8}} 
+\index{workspace.\+c@{workspace.\+c}!W\+S\+\_\+\+U\+N\+S\+ET@{W\+S\+\_\+\+U\+N\+S\+ET}}
+\index{W\+S\+\_\+\+U\+N\+S\+ET@{W\+S\+\_\+\+U\+N\+S\+ET}!workspace.\+c@{workspace.\+c}}
+\subsubsection{\texorpdfstring{W\+S\+\_\+\+U\+N\+S\+ET}{WS\_UNSET}}
+{\footnotesize\ttfamily \#define W\+S\+\_\+\+U\+N\+S\+ET(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~WS\mbox{[}x\mbox{]}.name\mbox{[}0\mbox{]} = \textquotesingle{}\textbackslash{}0\textquotesingle{}}
+
 
 
 \subsection{Function Documentation}
-\hypertarget{workspace_8c_a3af2e8d4387ce8986db09a9eb7328bc1}{\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+get@{workspace\+\_\+get}}
+\mbox{\Hypertarget{workspace_8c_a3af2e8d4387ce8986db09a9eb7328bc1}\label{workspace_8c_a3af2e8d4387ce8986db09a9eb7328bc1}} 
+\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+get@{workspace\+\_\+get}}
 \index{workspace\+\_\+get@{workspace\+\_\+get}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{workspace\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ workspace\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{name}
-\end{DoxyParamCaption}
-)}}\label{workspace_8c_a3af2e8d4387ce8986db09a9eb7328bc1}
+\subsubsection{\texorpdfstring{workspace\+\_\+get()}{workspace\_get()}}
+{\footnotesize\ttfamily void$\ast$ workspace\+\_\+get (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000006}{Todo}]Create a return value for bad name like \hyperlink{workspace_8h_a536b0f47bc3b9177d1aaca025a05515a}{workspace\+\_\+set} with W\+O\+R\+K\+S\+P\+A\+C\+E\+\_\+\+N\+A\+M\+E \end{DoxyRefDesc}
-\hypertarget{workspace_8c_ae04d0019e903cb60b08ed382cb0b0d31}{\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+init@{workspace\+\_\+init}}
+\item[\hyperlink{todo__todo000006}{Todo}]Create a return value for bad name like \hyperlink{workspace_8h_a536b0f47bc3b9177d1aaca025a05515a}{workspace\+\_\+set} with W\+O\+R\+K\+S\+P\+A\+C\+E\+\_\+\+N\+A\+ME \end{DoxyRefDesc}
+\mbox{\Hypertarget{workspace_8c_ae04d0019e903cb60b08ed382cb0b0d31}\label{workspace_8c_ae04d0019e903cb60b08ed382cb0b0d31}} 
+\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+init@{workspace\+\_\+init}}
 \index{workspace\+\_\+init@{workspace\+\_\+init}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{workspace\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void workspace\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}}\label{workspace_8c_ae04d0019e903cb60b08ed382cb0b0d31}
+\subsubsection{\texorpdfstring{workspace\+\_\+init()}{workspace\_init()}}
+{\footnotesize\ttfamily void workspace\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
 
 
 Resets all workspace entries to unset. 
@@ -119,18 +122,15 @@ Resets all workspace entries to unset.
 \begin{DoxyNote}{Note}
 Must be run before workspace use. 
 \end{DoxyNote}
-\hypertarget{workspace_8c_a536b0f47bc3b9177d1aaca025a05515a}{\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+set@{workspace\+\_\+set}}
+\mbox{\Hypertarget{workspace_8c_a536b0f47bc3b9177d1aaca025a05515a}\label{workspace_8c_a536b0f47bc3b9177d1aaca025a05515a}} 
+\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+set@{workspace\+\_\+set}}
 \index{workspace\+\_\+set@{workspace\+\_\+set}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{workspace\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}int workspace\+\_\+set (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{name, }
-\item[{void $\ast$}]{data}
-\end{DoxyParamCaption}
-)}}\label{workspace_8c_a536b0f47bc3b9177d1aaca025a05515a}
-\hypertarget{workspace_8c_a97b64b0cd36caba06d3c607cfb0c8dd8}{\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+unset@{workspace\+\_\+unset}}
+\subsubsection{\texorpdfstring{workspace\+\_\+set()}{workspace\_set()}}
+{\footnotesize\ttfamily int workspace\+\_\+set (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{workspace_8c_a97b64b0cd36caba06d3c607cfb0c8dd8}\label{workspace_8c_a97b64b0cd36caba06d3c607cfb0c8dd8}} 
+\index{workspace.\+c@{workspace.\+c}!workspace\+\_\+unset@{workspace\+\_\+unset}}
 \index{workspace\+\_\+unset@{workspace\+\_\+unset}!workspace.\+c@{workspace.\+c}}
-\subsubsection[{workspace\+\_\+unset}]{\setlength{\rightskip}{0pt plus 5cm}void workspace\+\_\+unset (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{name}
-\end{DoxyParamCaption}
-)}}\label{workspace_8c_a97b64b0cd36caba06d3c607cfb0c8dd8}
+\subsubsection{\texorpdfstring{workspace\+\_\+unset()}{workspace\_unset()}}
+{\footnotesize\ttfamily void workspace\+\_\+unset (\begin{DoxyParamCaption}\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+

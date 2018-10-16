@@ -1,12 +1,12 @@
 <map id="string_to_sym" name="string_to_sym">
-<area shape="rect" id="node3" href="$errors_8c.html#acffe5034f6694d4d88d78a2b4eb87c06" title="rerror" alt="" coords="585,5,636,38"/>
-<area shape="rect" id="node5" href="$types_8c.html#a57807e65ff8a4886f850f98d347e44fc" title="Find the index of the matching closing paren in a string. " alt="" coords="560,109,661,142"/>
-<area shape="rect" id="node7" href="$expression_8c.html#a63988c00ace0261c4896f132f5f86fda" title="Convert String to an Expression. " alt="" coords="159,187,300,221"/>
-<area shape="rect" id="node9" href="$errors_8c.html#a4586b9204c37a7050d838ccfcbde3e3d" title="pferror" alt="" coords="581,239,640,273"/>
-<area shape="rect" id="node14" href="$expression_8c.html#affb6adb350cc9126e06af303607ca812" title="expression_new_tree" alt="" coords="355,322,499,355"/>
-<area shape="rect" id="node18" href="$expression_8c.html#a02b7142f5701d82971d1f21ec20772be" title="expression_new_sym" alt="" coords="353,378,500,411"/>
-<area shape="rect" id="node21" href="$symbolic_8c.html#a78aa047f421c2d8ab5fab3c72d123d1b" title="Create symbol from a string. " alt="" coords="375,109,479,142"/>
-<area shape="rect" id="node26" href="$expression_8c.html#a7c44bf0c0e78a10270eeec18a89eb340" title="expression_new_value" alt="" coords="349,434,504,467"/>
-<area shape="rect" id="node29" href="$types_8c.html#a9c194ae881900b4376e761e2294117f9" title="Create value from a string. " alt="" coords="372,266,481,299"/>
-<area shape="rect" id="node16" href="$expression_8c.html#a513e1cb7ae9dbcef50307f2c13e00dd9" title="New blank expression. " alt="" coords="553,378,668,411"/>
+<area shape="rect" id="node2" href="$errors_8c.html#acffe5034f6694d4d88d78a2b4eb87c06" title="rerror" alt="" coords="583,5,635,32"/>
+<area shape="rect" id="node3" href="$types_8c.html#a57807e65ff8a4886f850f98d347e44fc" title="Find the index of the matching closing paren in a string. " alt="" coords="557,107,660,133"/>
+<area shape="rect" id="node4" href="$expression_8c.html#a63988c00ace0261c4896f132f5f86fda" title="Convert String to an Expression. " alt="" coords="157,183,300,209"/>
+<area shape="rect" id="node5" href="$errors_8c.html#a4586b9204c37a7050d838ccfcbde3e3d" title="pferror" alt="" coords="579,233,638,260"/>
+<area shape="rect" id="node6" href="$expression_8c.html#affb6adb350cc9126e06af303607ca812" title="expression_new_tree" alt="" coords="353,309,498,336"/>
+<area shape="rect" id="node8" href="$expression_8c.html#a02b7142f5701d82971d1f21ec20772be" title="expression_new_sym" alt="" coords="351,360,499,387"/>
+<area shape="rect" id="node9" href="$symbolic_8c.html#a78aa047f421c2d8ab5fab3c72d123d1b" title="Create symbol from a string. " alt="" coords="373,107,477,133"/>
+<area shape="rect" id="node10" href="$expression_8c.html#a7c44bf0c0e78a10270eeec18a89eb340" title="expression_new_value" alt="" coords="348,411,503,437"/>
+<area shape="rect" id="node11" href="$types_8c.html#a9c194ae881900b4376e761e2294117f9" title="Create value from a string. " alt="" coords="370,259,481,285"/>
+<area shape="rect" id="node7" href="$expression_8c.html#a513e1cb7ae9dbcef50307f2c13e00dd9" title="New blank expression. " alt="" coords="551,360,667,387"/>
 </map>

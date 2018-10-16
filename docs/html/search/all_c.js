@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['red',['RED',['../main_8c.html#a8d23feea868a983c8c2b661e1e16972f',1,'main.c']]],
   ['rerror',['rerror',['../errors_8c.html#acffe5034f6694d4d88d78a2b4eb87c06',1,'rerror(char const *fmt,...):&#160;errors.c'],['../errors_8h.html#acffe5034f6694d4d88d78a2b4eb87c06',1,'rerror(char const *fmt,...):&#160;errors.c']]],
   ['result',['RESULT',['../main_8c.html#ab6b4f9167f1d2de786d796d82f941454',1,'main.c']]],

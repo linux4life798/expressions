@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['types_2ec',['types.c',['../types_8c.html',1,'']]],
-  ['types_2eh',['types.h',['../types_8h.html',1,'']]]
+  ['symbolic_2ec',['symbolic.c',['../symbolic_8c.html',1,'']]],
+  ['symbolic_2eh',['symbolic.h',['../symbolic_8h.html',1,'']]]
 ];

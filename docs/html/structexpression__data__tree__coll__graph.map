@@ -1,7 +1,7 @@
 <map id="expression_data_tree" name="expression_data_tree">
-<area shape="rect" id="node4" href="$unionexpression__data.html" title="Expression data container. " alt="" coords="140,342,257,439"/>
-<area shape="rect" id="node2" href="$structexpression.html" title="The stored representation of mathematical expressions. " alt="" coords="65,510,151,607"/>
-<area shape="rect" id="node6" href="$structsym.html" title="A named symbol type. " alt="" coords="132,678,199,775"/>
-<area shape="rect" id="node10" href="$structvalue.html" title="Represents a numeric value or an error. " alt="" coords="176,174,235,271"/>
-<area shape="rect" id="node12" href="$unionvalue__data.html" title="value data container provider " alt="" coords="163,6,248,103"/>
+<area shape="rect" id="node3" href="$unionexpression__data.html" title="Expression data container. " alt="" coords="140,285,257,363"/>
+<area shape="rect" id="node2" href="$structexpression.html" title="The stored representation of mathematical expressions. " alt="" coords="65,425,151,503"/>
+<area shape="rect" id="node4" href="$structsym.html" title="A named symbol type. " alt="" coords="120,565,187,643"/>
+<area shape="rect" id="node5" href="$structvalue.html" title="Represents a numeric value or an error. " alt="" coords="176,145,235,223"/>
+<area shape="rect" id="node6" href="$unionvalue__data.html" title="value data container provider " alt="" coords="163,5,248,83"/>
 </map>
