@@ -25,10 +25,10 @@ typedef char exp_buf[EXP_BUF_SIZE];
  *---------------------------------------------*/
 /* The tree operation element for the expression structure */
 /** Expression data container for the expanded expression.
- * Expanded tree expressions are composed of an operation that joins a left sub-expression and a right rub-expression.
+ * Expanded tree expressions are composed of an operation that joins a left sub-expression and a right sub-expression.
  */
 struct expression_data_tree {
-	/** The joining operation of the two two sub expressions.
+	/** The joining operation of the two sub-expressions.
 	 * \note Previously implemented using enumerations, but proved to be more of a burden.
 	 */
     char op; // '+', '-', '*', or '/'
